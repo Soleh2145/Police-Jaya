@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Website LVPD Monarch</title>
+  <style>
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #e74c3c, #8e44ad, #3498db, #2ecc71);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+    }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    header { text-align: center; padding: 25px 0; background-color: rgba(0, 0, 0, 0.5); }
+    header h1 { margin: 0; font-size: 32px; }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      background-color: rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+    nav button {
+      background: none; border: none; color: white;
+      padding: 12px 18px; font-size: 15px; cursor: pointer;
+      transition: background 0.2s;
+    }
+    nav button:hover, .dropdown:hover .dropbtn { background-color: rgba(255,255,255,0.12); }
+
+    /* Dropdown SOP */
+    .dropdown { position: relative; display: inline-block; }
+    .dropbtn::after {
+      content: " ⋮"; /* garis 3 titik */
+      font-size: 16px;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: rgba(0,0,0,0.85);
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
+      z-index: 1;
+    }
+    .dropdown-content button {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border: none; background: none; color: #fff; cursor: pointer;
+    }
+    .dropdown-content button:hover { background: rgba(255,255,255,0.15); }
+    .dropdown:hover .dropdown-content { display: block; }
+
+    .container {
+      max-width: 980px; margin: 30px auto;
+      background-color: rgba(0, 0, 0, 0.45);
+      padding: 26px; border-radius: 12px;
+      box-shadow: 0 0 16px rgba(0,0,0,0.35);
+    }
+    h2 { border-bottom: 2px solid #ffffff33; padding-bottom: 10px; margin-bottom: 18px; }
+    ol, ul, p { line-height: 1.7; color: #f1f1f1; }
+    li { margin-bottom: 10px; }
+
+    footer {
+      text-align: center; padding: 18px; color: #eee;
+      font-size: 14px; margin-top: 30px;
+      background: rgba(0,0,0,0.45); border-top: 1px solid #ffffff22;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .sop-section {
+      background: rgba(255,255,255,0.03);
+      padding: 12px; border-radius: 8px; margin-bottom: 12px;
+    }
+    .note { font-style: italic; color: #ffeb99; margin-top: 6px; }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 20px; }
+      nav button { padding: 10px 12px; font-size: 13px; }
+      .container { padding: 16px; margin: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Website LVPD Monarch</h1>
+  </header>
+
+  <nav>
+    <button onclick="showTab('beranda')">Beranda</button>
+    <button onclick="showTab('peraturan')">Peraturan</button>
+    <button onclick="showTab('panelcode')">Panel Code</button>
+    <button onclick="showTab('tencode')">Ten Code</button>
+    <button onclick="showTab('materi')">Materi Lainnya</button>
+    <button onclick="showTab('sopkendaraan')">SOP Kendaraan</button>
+    
+    <!-- Dropdown SOP -->
+    <div class="dropdown">
+      <button class="dropbtn">SOP</button>
+      <div class="dropdown-content">
+        <button onclick="showTab('sopdeteksi')">SOP Deteksi</button>
+        <button onclick="showTab('sopsenjata')">SOP Senjata</button>
+        <button onclick="showTab('soppatroli')">SOP Patroli</button>
+        <button onclick="showTab('accessories')">SOP Accessories</button>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+
+<!-- BRANDA -->
+<div id="branda" class="tab-content" style="display:block;">
+  <h1>Selamat Datang di Website Kepolisian</h1>
+  <p>
+    Website ini dibuat khusus untuk memberikan informasi seputar <b>SOP, Peraturan, dan Materi Pelatihan</b> 
+    kepada seluruh anggota kepolisian. Semua anggota diharapkan membaca dengan seksama 
+    agar tidak terjadi pelanggaran aturan.
+  </p>
+
+  <div class="highlight-box">
+    <h3>🌟 Motto Kepolisian</h3>
+    <p><i>"Mengayomi, Melindungi, dan Melayani Masyarakat."</i></p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>📌 Visi & Misi</h3>
+    <ul>
+      <li>Menjaga keamanan dan ketertiban masyarakat.</li>
+      <li>Menegakkan hukum secara adil dan profesional.</li>
+      <li>Melayani masyarakat dengan sepenuh hati.</li>
+      <li>Menciptakan lingkungan roleplay yang sehat dan realistis.</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h3>⚠️ Penting!</h3>
+    <p>
+      Seluruh anggota wajib mematuhi <b>SOP & Peraturan</b> yang sudah ditetapkan. 
+      Pelanggaran akan dikenakan <b>sanksi tegas</b> sesuai tingkat kesalahan.
+    </p>
+  </div>
+
+  <footer style="margin-top:20px; font-size:14px; text-align:center; color:#888;">
+    Website ini dibuat oleh <b>Deputy Comansioner Soleh</b> sebagai pusat informasi resmi Kepolisian.
+  </footer>
+</div>
+
+<!-- PERATURAN -->
+<div id="peraturan" class="tab-content">
+  <h2>Peraturan Kepolisian</h2>
+  <p>
+    Seluruh anggota kepolisian wajib mematuhi peraturan berikut. Pelanggaran akan dikenakan sanksi sesuai tingkat kesalahan.
+  </p>
+  
+  <ol>
+    <li>
+      <b>Kehadiran</b><br>
+      - Wajib hadir saat ada panggilan dinas.<br>
+      - Tidak boleh AFK lama ketika sedang bertugas.<br>
+      - Harus mengikuti briefing bila ada.
+    </li>
+    <li>
+      <b>Disiplin</b><br>
+      - Wajib menggunakan seragam resmi saat bertugas.<br>
+      - Tidak boleh menggunakan kendaraan non-dinas saat patroli.<br>
+      - Senjata hanya boleh digunakan sesuai SOP.
+    </li>
+    <li>
+      <b>Etika</b><br>
+      - Hormati warga sipil dan rekan kerja.<br>
+      - Hindari penggunaan kata-kata kasar saat di IC/OOC.<br>
+      - Wajib menjaga citra kepolisian.
+    </li>
+    <li>
+      <b>Tindakan di Lapangan</b><br>
+      - Tidak boleh abuse power (nunjukin pangkat untuk keuntungan pribadi).<br>
+      - Penangkapan harus dengan alasan yang jelas.<br>
+      - Harus memberi tahu hak tersangka saat ditangkap.
+    </li>
+    <li>
+      <b>Kendaraan</b><br>
+      - Wajib menggunakan kendaraan dinas sesuai SOP.<br>
+      - Tidak boleh membawa kendaraan pribadi saat patroli.<br>
+      - Kendaraan dinas harus diparkir rapi setelah digunakan.
+    </li>
+    <li>
+      <b>Senjata</b><br>
+      - Senjata berat hanya boleh digunakan saat perang besar.<br>
+      - Tidak boleh membawa senjata melebihi ketentuan.<br>
+      - Wajib cek lisensi senjata sipil sebelum penyitaan.
+    </li>
+    <li>
+      <b>Komunikasi</b><br>
+      - Gunakan radio (10-Code) dengan benar.<br>
+      - Tidak boleh bercanda berlebihan di radio.<br>
+      - Wajib melaporkan posisi dan situasi bila sedang patroli.
+    </li>
+    <li>
+      <b>Lain-lain</b><
+
+<!-- Panel Code -->
+<div id="panelcode" class="tab-content">
+  <h2>Panel Code</h2>
+  <ul>
+    <li>
+      <b>Code 0:</b> <u>Darurat Besar</u>  
+      Semua unit wajib merespon secepat mungkin ke lokasi.  
+      Digunakan ketika ada penyerangan markas, penembakan massal,
+      atau kejadian yang mengancam nyawa banyak orang.
+    </li>
+    <li>
+      <b>Code 1:</b> <u>Pemantauan</u>  
+      Unit diminta mengamati kondisi sekitar tanpa melakukan intervensi.
+    </li>
+    <li>
+      <b>Code 2:</b> <u>Respon Cepat Tanpa Sirine</u>  
+      Digunakan untuk keadaan darurat yang memerlukan kecepatan,
+      tetapi tidak boleh menarik perhatian publik (misalnya narkoba).
+    </li>
+    <li>
+      <b>Code 3:</b> <u>Respon Darurat Dengan Sirine</u>  
+      Semua unit boleh menggunakan lampu dan sirine menuju lokasi.  
+      Contoh: perampokan bank, baku tembak, ledakan.
+    </li>
+    <li>
+      <b>Code 4:</b> <u>Situasi Aman</u>  
+      Menandakan bahwa situasi sudah terkendali.  
+      Tidak diperlukan backup tambahan, unit bisa kembali ke tugas masing-masing.
+    </li>
+    <li>
+      <b>Code 5:</b> <u>Pengawasan Diam-diam</u>  
+      Unit harus melakukan pengintaian secara rahasia,
+      tidak boleh menggunakan sirine/lampu.
+    </li>
+    <li>
+      <b>Code 6:</b> <u>Investigasi</u>  
+      Unit sedang melakukan pemeriksaan lebih lanjut di TKP.  
+      Unit lain diharapkan waspada dan siap backup.
+    </li>
+    <li>
+      <b>Code 7:</b> <u>Istirahat / Makan</u>  
+      Unit sedang off-duty sementara untuk beristirahat.
+    </li>
+    <li>
+      <b>Code 8:</b> <u>Tahanan Kabur</u>  
+      Semua unit fokus mencari tahanan yang melarikan diri.
+    </li>
+    <li>
+      <b>Code 9:</b> <u>Penyergapan</u>  
+      Digunakan untuk menandakan bahwa unit sedang menyiapkan operasi penangkapan.
+    </li>
+  </ul>
+</div>
+
+<!-- Credit -->
+<footer style="margin-top:40px; text-align:center; padding:15px; background:#f4f4f4; border-top:1px solid #ccc;">
+  <p style="margin:0; font-size:14px; color:#555;">
+    Dibuat oleh <b>Deputy Comansioner Soleh</b> | © 2025
+  </p>
+</footer>
+
+<!-- Ten Code -->
+<div id="tencode" class="tab-content">
+  <h2>Ten Code</h2>
+  <table border="1" cellspacing="0" cellpadding="6" style="width:100%; border-collapse:collapse; background:rgba(0,0,0,0.25); color:white;">
+    <thead style="background:rgba(255,255,255,0.15);">
+      <tr>
+        <th style="text-align:left;">Kode</th>
+        <th style="text-align:left;">Arti</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>10-0</td><td>Gunakan dengan hati-hati (Use Caution)</td></tr>
+      <tr><td>10-1</td><td>Sinyal buruk (Unable to copy – change location)</td></tr>
+      <tr><td>10-2</td><td>Sinyal baik (Signal good)</td></tr>
+      <tr><td>10-3</td><td>Hentikan transmisi (Stop transmitting)</td></tr>
+      <tr><td>10-4</td><td>Afirmasi / Pesan diterima (Acknowledgement / OK)</td></tr>
+      <tr><td>10-5</td><td>Teruskan pesan (Relay)</td></tr>
+      <tr><td>10-6</td><td>Sibuk, tetapi bisa dibalas (Busy – standby unless urgent)</td></tr>
+      <tr><td>10-7</td><td>Tidak bertugas / Out of service</td></tr>
+      <tr><td>10-8</td><td>Bertugas / In service</td></tr>
+      <tr><td>10-9</td><td>Ulangi / Repeat</td></tr>
+      <tr><td>10-10</td><td>Perkelahian sedang berlangsung</td></tr>
+      <tr><td>10-11</td><td>Gangguan hewan</td></tr>
+      <tr><td>10-12</td><td>Ada orang di sekitar / Ada tamu</td></tr>
+      <tr><td>10-13</td><td>Kondisi cuaca atau jalan</td></tr>
+      <tr><td>10-14</td><td>Laporan penyusup</td></tr>
+      <tr><td>10-15</td><td>Gangguan sipil</td></tr>
+      <tr><td>10-16</td><td>Masalah domestik</td></tr>
+      <tr><td>10-17</td><td>Temui pelapor</td></tr>
+      <tr><td>10-18</td><td>Segera / Urgent</td></tr>
+      <tr><td>10-19</td><td>Kembali ke kantor / Return to station</td></tr>
+      <tr><td>10-20</td><td>Lokasi Anda</td></tr>
+      <tr><td>10-21</td><td>Hubungi via telepon</td></tr>
+      <tr><td>10-22</td><td>Abaikan</td></tr>
+      <tr><td>10-23</td><td>Tiba di lokasi</td></tr>
+      <tr><td>10-24</td><td>Tugas selesai</td></tr>
+      <tr><td>10-25</td><td>Temui di lokasi tertentu</td></tr>
+      <tr><td>10-26</td><td>Menahan tersangka</td></tr>
+      <tr><td>10-27</td><td>Cek SIM</td></tr>
+      <tr><td>10-28</td><td>Cek registrasi kendaraan</td></tr>
+      <tr><td>10-29</td><td>Cek catatan kriminal (warrant check)</td></tr>
+      <tr><td>10-30</td><td>Penggunaan radio tidak sah</td></tr>
+      <tr><td>10-31</td><td>Kejahatan sedang terjadi</td></tr>
+      <tr><td>10-32</td><td>Butuh backup unit</td></tr>
+      <tr><td>10-33</td><td>Darurat</td></tr>
+      <tr><td>10-34</td><td>Kerusuhan</td></tr>
+      <tr><td>10-35</td><td>Alarm kejahatan serius</td></tr>
+      <tr><td>10-36</td><td>Waktu sekarang</td></tr>
+      <tr><td>10-37</td><td>Kendaraan mencurigakan</td></tr>
+      <tr><td>10-38</td><td>Memberhentikan kendaraan</td></tr>
+      <tr><td>10-39</td><td>Jawab dengan sirene dan lampu (Code 3)</td></tr>
+      <tr><td>10-40</td><td>Jangan gunakan sirene/lampu</td></tr>
+      <tr><td>10-41</td><td>Mulai shift</td></tr>
+      <tr><td>10-42</td><td>Selesai shift</td></tr>
+      <tr><td>10-43</td><td>Informasi</td></tr>
+      <tr><td>10-44</td><td>Izin meninggalkan lokasi</td></tr>
+      <tr><td>10-45</td><td>Hewan mati</td></tr>
+      <tr><td>10-46</td><td>Bantu pengemudi</td></tr>
+      <tr><td>10-47</td><td>Perbaikan darurat jalan</td></tr>
+      <tr><td>10-48</td><td>Kontrol lalu lintas</td></tr>
+      <tr><td>10-49</td><td>Lampu lalu lintas rusak</td></tr>
+      <tr><td>10-50</td><td>Kecelakaan kendaraan</td></tr>
+      <tr><td>10-51</td><td>Minta mobil derek</td></tr>
+      <tr><td>10-52</td><td>Minta ambulans</td></tr>
+      <tr><td>10-53</td><td>Jalan tertutup</td></tr>
+      <tr><td>10-54</td><td>Hewan ternak di jalan</td></tr>
+      <tr><td>10-55</td><td>Pengemudi mabuk</td></tr>
+      <tr><td>10-56</td><td>Pejalan kaki mabuk</td></tr>
+      <tr><td>10-57</td><td>Tabrak lari</td></tr>
+      <tr><td>10-58</td><td>Atur lalu lintas</td></tr>
+      <tr><td>10-59</td><td>Pengawalan</td></tr>
+      <tr><td>10-60</td><td>Unit berada di dekat lokasi</td></tr>
+      <tr><td>10-61</td><td>Personel berada di dekat lokasi</td></tr>
+      <tr><td>10-62</td><td>Balas pesan</td></tr>
+      <tr><td>10-63</td><td>Siap terima pesan</td></tr>
+      <tr><td>10-64</td><td>Pesan lokal</td></tr>
+      <tr><td>10-65</td><td>Pesan jaringan</td></tr>
+      <tr><td>10-66</td><td>Batalkan pesan</td></tr>
+      <tr><td>10-67</td><td>Siap untuk pesan baru</td></tr>
+      <tr><td>10-68</td><td>Informasi dari dispatch</td></tr>
+      <tr><td>10-69</td><td>Pesan diterima</td></tr>
+      <tr><td>10-70</td><td>Alarm kebakaran</td></tr>
+      <tr><td>10-71</td><td>Laporan jenis alarm</td></tr>
+      <tr><td>10-72</td><td>Laporan perkembangan kebakaran</td></tr>
+      <tr><td>10-73</td><td>Laporan asap</td></tr>
+      <tr><td>10-74</td><td>Negatif (No)</td></tr>
+      <tr><td>10-75</td><td>Bertemu dengan ___</td></tr>
+      <tr><td>10-76</td><td>Menuju ke lokasi</td></tr>
+      <tr><td>10-77</td><td>Estimasi waktu kedatangan</td></tr>
+      <tr><td>10-78</td><td>Minta bantuan</td></tr>
+      <tr><td>10-79</td><td>Hubungi petugas koroner</td></tr>
+      <tr><td>10-80</td><td>Kejar-kejaran (pursuit)</td></tr>
+      <tr><td>10-81</td><td>Laporan breathalyzer</td></tr>
+      <tr><td>10-82</td><td>Reservasi penginapan</td></tr>
+      <tr><td>10-83</td><td>Penjagaan sekolah</td></tr>
+      <tr><td>10-84</td><td>Beri tahu ETA</td></tr>
+      <tr><td>10-85</td><td>Keterlambatan kedatangan</td></tr>
+      <tr><td>10-86</td><td>Operator sedang bertugas</td></tr>
+      <tr><td>10-87</td><td>Penjemputan</td></tr>
+      <tr><td>10-88</td><td>Berikan nomor telepon</td></tr>
+      <tr><td>10-89</td><td>Ancaman bom</td></tr>
+      <tr><td>10-90</td><td>Alarm bank</td></tr>
+      <tr><td>10-91</td><td>Jemput tahanan</td></tr>
+      <tr><td>10-92</td><td>Kendaraan parkir ilegal</td></tr>
+      <tr><td>10-93</td><td>Blokade jalan</td></tr>
+      <tr><td>10-94</td><td>Balapan liar</td></tr>
+      <tr><td>10-95</td><td>Subjek ditahan</td></tr>
+      <tr><td>10-96</td><td>Subjek ditahan untuk pemeriksaan</td></tr>
+      <tr><td>10-97</td><td>Dalam perjalanan ke lokasi</td></tr>
+      <tr><td>10-98</td><td>Penjara kabur</td></tr>
+      <tr><td>10-99</td><td>Subjek berbahaya / Dicari</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MATERI -->
+<div id="materi" class="tab-content">
+  <h2>Materi Pelatihan Kepolisian</h2>
+  <p>
+    Materi ini wajib dipahami oleh seluruh anggota untuk mendukung kinerja di lapangan. 
+    Berikut daftar materi utama:
+  </p>
+  <ol>
+    <li>
+      <b>Dasar Kepolisian</b><br>
+      - Fungsi dan tugas kepolisian dalam roleplay.<br>
+      - Etika saat berinteraksi dengan warga.<br>
+      - Struktur organisasi kepolisian.
+    </li>
+    <li>
+      <b>Penggunaan Senjata</b><br>
+      - SOP penggunaan senjata api.<br>
+      - Aturan menembak hanya dalam keadaan darurat.<br>
+      - Latihan menembak secara berkala.
+    </li>
+    <li>
+      <b>Patroli dan Pengawalan</b><br>
+      - Teknik patroli jalan kaki & kendaraan.<br>
+      - Cara komunikasi via radio (10-Code).<br>
+      - Tindakan saat menemukan kejadian mencurigakan.
+    </li>
+    <li>
+      <b>Lalu Lintas</b><br>
+      - Penanganan pelanggaran lalu lintas.<br>
+      - Tata cara tilang sesuai prosedur RP.<br>
+      - Safety driving saat menggunakan kendaraan dinas.
+    </li>
+    <li>
+      <b>Penanganan Tahanan</b><br>
+      - SOP penangkapan.<br>
+      - Proses interogasi sesuai aturan RP.<br>
+      - Hak-hak tahanan yang harus dipenuhi.
+    </li>
+    <li>
+      <b>Administrasi & Dokumentasi</b><br>
+      - Cara membuat laporan resmi.<br>
+      - Penggunaan panel kepolisian.<br>
+      - Dokumentasi kejadian (SS/record).
+    </li>
+  </ol>
+
+  <p class="note">
+    <b>Note:</b> Materi ini menjadi dasar sebelum naik pangkat. 
+    Semua anggota wajib menguasai seluruh poin yang ada.
+  </p>
+</div>
+
+<!-- SOP Kendaraan -->
+<div id="sopkendaraan" class="tab-content">
+  <h2>5. SOP Kendaraan</h2>
+  <ul>
+    <li>
+      <b>A.</b> Kendaraan dinas hanya boleh digunakan saat bertugas, 
+      tidak boleh dipakai untuk kepentingan pribadi.
+    </li>
+    <li>
+      <b>B.</b> Wajib menjaga kondisi kendaraan tetap bersih, rapi, 
+      dan siap digunakan setiap saat.
+    </li>
+    <li>
+      <b>C.</b> Tidak diperbolehkan ugal-ugalan di jalan raya 
+      kecuali dalam kondisi darurat (mengejar suspect atau patroli high-risk).
+    </li>
+    <li>
+      <b>D.</b> Kendaraan wajib diparkir di area parkir markas/kantor polisi 
+      setelah selesai digunakan.
+    </li>
+    <li>
+      <b>E.</b> Jika kendaraan mengalami kerusakan atau hilang, 
+      segera dilaporkan kepada atasan/admin.
+    </li>
+    <li>
+      <b>F.</b> Tidak boleh memodifikasi Kendaraan
+
+    <!-- SOP DETEKSI -->
+    <div id="sopdeteksi" class="tab-content">
+      <h2>1. SOP Deteksi Senjata & Narkotika</h2>
+      <ul>
+        <li>
+          <b>A.</b> Jika melihat civil membawa senjata atau narkotika, 
+          polisi boleh siaga tetapi <b>tidak boleh langsung menodong</b>.
+        </li>
+        <li>
+          <b>B.</b> Lakukan pemeriksaan dengan cara humanis, mulai dari 
+          meminta <b>lisensi senjata</b> atau <b>dokumen kepemilikan</b>.
+        </li>
+        <li>
+          <b>C.</b> Jika civil kabur menggunakan kendaraan, 
+          <b>wajib beri 1–3 kali peringatan</b> secara jelas (via megaphone atau radio).
+        </li>
+        <li>
+          <b>D.</b> Jika peringatan diabaikan dan civil tetap kabur, 
+          polisi diperbolehkan melakukan tindakan tegas sesuai aturan roleplay.
+        </li>
+        <li>
+          <b>E.</b> Untuk kasus narkotika, wajib dilakukan <b>proses pemeriksaan</b> 
+          hingga barang bukti ditemukan, jangan langsung menuduh tanpa dasar.
+        </li>
+      </ul>
+      <p class="note">
+        <b>Note:</b> Anggota dilarang menyalahgunakan wewenang untuk 
+        menodong, menembak, atau memaksa tanpa prosedur yang jelas. 
+        Selalu utamakan <b>roleplay pemeriksaan</b>.
+      </p>
+    </div>
+
+    <!-- SOP SENJATA -->
+    <div id="sopsenjata" class="tab-content">
+      <h2>2. SOP Penggunaan Senjata</h2>
+      <ul>
+        <li>
+          <b>A.</b> Senjata hanya boleh digunakan ketika 
+          <b>situasi mendesak</b> atau sesuai arahan atasan.
+        </li>
+        <li>
+          <b>B.</b> Tidak diperbolehkan menodong atau menembak 
+          <b>civilian tanpa alasan jelas</b>.
+        </li>
+        <li>
+          <b>C.</b> Setiap kali menggunakan senjata, 
+          wajib melakukan <b>roleplay melepas safety</b> 
+          sebelum menembak.
+        </li>
+        <li>
+          <b>D.</b> Dilarang melakukan <b>random shoot</b> 
+          atau menembak tanpa roleplay.
+        </li>
+        <li>
+          <b>E.</b> Senjata laras panjang hanya boleh digunakan 
+          ketika ada <b>perintah resmi</b> atau keadaan darurat (perang/penyerangan).
+        </li>
+        <li>
+          <b>F.</b> Setelah selesai menggunakan senjata, 
+          <b>wajib disimpan kembali</b> dan dilaporkan ke atasan.
+        </li>
+      </ul>
+      <p class="note">
+        <b>Note:</b> Setiap penggunaan senjata akan dipertanggungjawabkan.  
+        Jika terbukti <b>menyalahgunakan</b>, akan dikenakan 
+        sanksi internal sesuai aturan.
+      </p>
+    </div>
+
+    <!-- SOP PATROLI -->
+    <div id="soppatroli" class="tab-content">
+      <h2>3. SOP Patroli</h2>
+      <ul>
+        <li>
+          <b>A.</b> Wajib melakukan patroli minimal berdua.  
+          <i>(Jika tidak ada rekan, boleh patroli sendiri)</i>.
+        </li>
+        <li>
+          <b>B.</b> Selalu menggunakan <b>kendaraan dinas</b> 
+          seperti motor Sanchez, mobil LVPD, atau mobil Patwal.
+        </li>
+        <li>
+          <b>C.</b> Dilarang menggunakan kendaraan pribadi 
+          untuk kegiatan dinas patroli.
+        </li>
+        <li>
+          <b>D.</b> Setiap patroli wajib melaporkan posisi 
+          secara berkala melalui <b>radio</b>.
+        </li>
+        <li>
+          <b>E.</b> Jika menemukan tindak kriminal saat patroli, 
+          wajib <b>melakukan prosedur roleplay</b> sesuai standar.
+        </li>
+      </ul>
+      <p class="note">
+        <b>Note:</b> Patroli bertujuan untuk menjaga keamanan 
+        dan memberikan rasa aman kepada masyarakat, 
+        bukan untuk mencari masalah.
+      </p>
+    </div>
+
+    <!-- SOP Accessories -->
+    <div id="accessories" class="tab-content">
+      <h2>4. SOP Accessories (Toys)</h2>
+      <ul>
+        <li>
+          <b>A.</b> Dilarang menggunakan toys yang berlebihan. <br>
+          <i>Contoh:</i> kepala ayam, dll yang tidak rapi.
+        </li>
+        <li>
+          <b>B.</b> Jika menggunakan toys topi, wajib hadap depan. 
+          Tidak boleh hadap samping maupun belakang.
+        </li>
+        <li>
+          <b>C.</b> Wajib memakai toys armor. <br>
+          <i>Note:</i> toys armor diperlihatkan ketika melakukan patroli 
+          dan tidak boleh dipakai saat berada di kantor 
+          (misalnya saat membuka layanan administrasi) 
+          kecuali sedang persiapan perang.
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    &copy; 2025Kepolisian Las Ventures | Monarch Roleplay
+  </footer>
+
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
