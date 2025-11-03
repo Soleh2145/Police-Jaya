@@ -1,90 +1,143 @@
 body {
-  background-color: #0d1117;
-  color: #f0f6fc;
-  font-family: "Poppins", sans-serif;
   margin: 0;
-  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #0e1117;
+  color: #fff;
 }
 
-nav {
-  background-color: #161b22;
-  padding: 10px 20px;
+/* NAVBAR */
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 15px 30px;
+  background-color: #161b22;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-nav h1 {
-  font-weight: 700;
-  color: #58a6ff;
+.nav-left h2 {
+  color: #1e90ff;
+  font-weight: 600;
 }
 
-nav a, nav button {
-  text-decoration: none;
-  color: #c9d1d9;
-  background-color: #21262d;
-  padding: 6px 12px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-nav a:hover, nav button:hover {
-  background-color: #30363d;
-}
-
-.container {
-  max-width: 900px;
-  margin: 50px auto;
-  background: #161b22;
-  border-radius: 12px;
-  padding: 30px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.3);
-}
-
-.title {
-  text-align: center;
-  color: #58a6ff;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-input, textarea {
-  width: 100%;
-  padding: 8px;
-  border-radius: 6px;
-  border: 1px solid #30363d;
-  background-color: #0d1117;
-  color: #f0f6fc;
-}
-
-button {
-  background-color: #238636;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #2ea043;
-}
-
-#discordUser {
+.nav-right {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
 }
 
-#discordUser img {
-  width: 32px;
-  height: 32px;
+.nav-btn {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  background: #1e90ff;
+  transition: all 0.3s ease;
+}
+.nav-btn:hover {
+  background: #0078ff;
+}
+
+.logout-btn {
+  background: #ff4747;
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.logout-btn:hover {
+  background: #e13b3b;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #22272e;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.discord-icon {
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
-  border: 2px solid #58a6ff;
+}
+
+/* LOGIN PAGE */
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: radial-gradient(circle at top, #0e1117, #000);
+}
+
+.login-container {
+  text-align: center;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.login-container h1 {
+  font-size: 1.8em;
+  color: #1e90ff;
+}
+
+/* ANIMATED BUTTON */
+.animated-btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  color: white;
+  background: linear-gradient(90deg, #0078ff, #00d4ff);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  text-decoration: none;
+  font-weight: 600;
+}
+.animated-btn:hover {
+  transform: scale(1.07);
+  box-shadow: 0 0 20px #00d4ff;
+}
+
+/* CONTENT */
+.content {
+  text-align: center;
+  padding: 50px 20px;
+}
+
+.button-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* JADWAL */
+.jadwal {
+  margin-top: 50px;
+}
+.jadwal-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.jadwal-item {
+  background: #1c1f26;
+  padding: 15px 25px;
+  border-radius: 10px;
+  width: 200px;
+  transition: 0.3s;
+}
+.jadwal-item:hover {
+  background: #0078ff;
+  transform: scale(1.05);
 }
