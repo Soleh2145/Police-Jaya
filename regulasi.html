@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regulasi | PD Monarch</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #0f172a; color: white; font-family: 'Poppins', sans-serif; }
+    .card { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 2rem; margin: 2rem auto; max-width: 800px; }
+    h2 { color: #60a5fa; }
+  </style>
+</head>
+<body>
+  <nav class="bg-blue-900 text-white p-4 flex justify-between items-center">
+    <h1 class="text-lg font-bold">SYSTEM PD MONARCH</h1>
+    <div class="space-x-4">
+      <a href="beranda.html" class="bg-blue-800 px-3 py-1 rounded hover:bg-blue-700">Beranda</a>
+      <button id="logoutBtn" class="bg-red-600 px-3 py-1 rounded hover:bg-red-700">Logout</button>
+    </div>
+  </nav>
+
+  <div class="card">
+    <h2 class="text-2xl font-bold mb-4">📜 Regulasi PD Monarch</h2>
+    <ul class="list-disc ml-5 space-y-2">
+      <li>Setiap personel wajib mengikuti jadwal tugas yang ditetapkan.</li>
+      <li>Dilarang menggunakan senjata tanpa izin dari atasan.</li>
+      <li>Wajib menjaga netralitas dan profesionalisme di lapangan.</li>
+      <li>Melapor sebelum dan sesudah melaksanakan tugas.</li>
+    </ul>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("discordUser") || "{}");
+    if (!user.id) window.location.href = "login.html";
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("discordUser");
+      window.location.href = "login.html";
+    });
+  </script>
+</body>
+</html>
