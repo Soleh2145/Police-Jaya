@@ -2,160 +2,112 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Beranda | PD MONARCH SYSTEM</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda | PD MONARCH</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
-    }
-
-    .hero h2 {
-      color: #58a6ff;
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      color: #c9d1d9;
-      font-size: 15px;
-    }
-
-    .layanan {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin: 30px 0;
-    }
-
-    .layanan button {
-      background-color: #238636;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 8px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-
-    .layanan button:hover {
-      background-color: #2ea043;
-      transform: translateY(-2px);
-    }
-
-    .jadwal-container {
-      background-color: #0d1117;
-      padding: 20px 25px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-
-    .jadwal-title {
-      text-align: center;
-      color: #58a6ff;
-      font-weight: 700;
-      font-size: 20px;
-      margin-bottom: 20px;
-    }
-
-    .jadwal-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
-      text-align: center;
-    }
-
-    .jadwal-item {
-      background-color: #161b22;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
-      transition: 0.2s;
-    }
-
-    .jadwal-item:hover {
-      background-color: #1f242b;
-      transform: translateY(-3px);
-    }
-
-    .jadwal-item b {
-      color: #fff;
-      display: block;
-      margin-bottom: 6px;
-    }
-
-    .jadwal-item small {
-      color: #8b949e;
-      display: block;
-    }
-  </style>
 </head>
-<body onload="protectPage()">
-  <nav>
-    <h1>PD MONARCH SYSTEM</h1>
-    <div style="display:flex;align-items:center;gap:10px;">
-      <a href="beranda.html">Beranda</a>
-      <a href="info.html">Kontak</a>
-      <div id="discordUser" style="display:none;">
-        <img id="avatar" src="">
-        <span id="username"></span>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <h2>PD MONARCH SYSTEM</h2>
+    </div>
+    <div class="nav-right">
+      <a href="beranda.html" class="nav-btn">Beranda</a>
+      <a href="kontak.html" class="nav-btn">Kontak</a>
+      <div class="user-profile">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="discord-icon">
+        <span id="discordName">Tukah1234_</span>
       </div>
-      <button onclick="logout()">Logout</button>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
     </div>
   </nav>
 
-  <div class="container">
-    <div class="hero">
-      <h2>Selamat Datang di Sistem Pelayanan PD MONARCH</h2>
-      <p>Pilih layanan di bawah ini untuk mengajukan permohonan roleplay:</p>
+  <main class="content">
+    <h1>Selamat Datang di Sistem Pelayanan PD MONARCH</h1>
+    <p>Pilih layanan di bawah ini untuk mengajukan permohonan:</p>
+
+    <div class="button-grid">
+      <a href="sim.html" class="animated-btn">Pembuatan SIM</a>
+      <a href="skck.html" class="animated-btn">Pembuatan SKCK</a>
+      <a href="#" class="animated-btn">Regulasi</a>
+      <a href="#" class="animated-btn">Informasi Pendaftaran</a>
     </div>
 
-    <div class="layanan">
-      <a href="sim.html"><button>Pembuatan SIM</button></a>
-      <a href="skck.html"><button>Pembuatan SKCK</button></a>
-      <a href="regulasi.html"><button>Regulasi</button></a>
-      <a href="info.html"><button>Informasi Pendaftaran</button></a>
-    </div>
-
-    <div class="jadwal-container">
-      <div class="jadwal-title">📅 Jadwal Operasional</div>
+    <section class="jadwal">
+      <h2>📅 Jadwal Operasional</h2>
       <div class="jadwal-grid">
         <div class="jadwal-item">
-          <b>Senin</b>
-          SKCK & Izin Berburu<br>
-          <small>15.30–17.00 | 19.00–20.30<br>MAPOLDA</small>
+          <h3>Senin</h3>
+          <p>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30</p>
         </div>
         <div class="jadwal-item">
-          <b>Selasa</b>
-          SKCK & Izin Berburu<br>
-          <small>15.30–17.00 | 19.00–20.30<br>MAPOLDA</small>
+          <h3>Selasa</h3>
+          <p>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30</p>
         </div>
         <div class="jadwal-item">
-          <b>Rabu</b>
-          SKCK & Izin Berburu<br>
-          <small>15.30–17.00 | 19.00–20.30<br>MAPOLDA</small>
-        </div>
-        <div class="jadwal-item">
-          <b>Kamis</b>
-          SKCK & Izin Berburu<br>
-          <small>15.30–17.00 | 19.00–20.30<br>MAPOLDA</small>
-        </div>
-        <div class="jadwal-item">
-          <b>Jumat</b>
-          SIM, Plate, Impound<br>
-          <small>15.30–17.00 | 19.30–21.00<br>HIGHWAY PATROL</small>
-        </div>
-        <div class="jadwal-item">
-          <b>Sabtu</b>
-          SIM, Plate, Impound<br>
-          <small>15.30–17.00 | 19.30–21.00<br>HIGHWAY PATROL</small>
+          <h3>Rabu</h3>
+          <p>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30</p>
         </div>
       </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda | PD MONARCH</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <h2>PD MONARCH SYSTEM</h2>
     </div>
-  </div>
+    <div class="nav-right">
+      <a href="beranda.html" class="nav-btn">Beranda</a>
+      <a href="kontak.html" class="nav-btn">Kontak</a>
+      <div class="user-profile">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" alt="Discord" class="discord-icon">
+        <span id="discordName">Tukah1234_</span>
+      </div>
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+  </nav>
+
+  <main class="content">
+    <h1>Selamat Datang di Sistem Pelayanan PD MONARCH</h1>
+    <p>Pilih layanan di bawah ini untuk mengajukan permohonan:</p>
+
+    <div class="button-grid">
+      <a href="sim.html" class="animated-btn">Pembuatan SIM</a>
+      <a href="skck.html" class="animated-btn">Pembuatan SKCK</a>
+      <a href="#" class="animated-btn">Regulasi</a>
+      <a href="#" class="animated-btn">Informasi Pendaftaran</a>
+    </div>
+
+    <section class="jadwal">
+      <h2>📅 Jadwal Operasional</h2>
+      <div class="jadwal-grid">
+        <div class="jadwal-item">
+          <h3>Senin</h3>
+          <p>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30</p>
+        </div>
+        <div class="jadwal-item">
+          <h3>Selasa</h3>
+          <p>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30</p>
+        </div>
+        <div class="jadwal-item">
+          <h3>Rabu</h3>
+          <p>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
