@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Duty & Cuti | SYSTEM PD MONARCH</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="logo">SYSTEM PD MONARCH</div>
+  <ul>
+    <li><a href="beranda.html">Beranda</a></li>
+    <li><a href="#" id="logoutBtn">Logout</a></li>
+  </ul>
+</nav>
+
+<main>
+  <h1>Laporan Duty & Cuti</h1>
+  <p>Hanya dapat diakses oleh Admin PD MONARCH</p>
+
+  <div id="loginCheck"></div>
+  <iframe src="https://pesanlvpd.vercel.app/" style="width:100%;height:600px;border:none;border-radius:12px;"></iframe>
+</main>
+
+<script src="script.js"></script>
+<script>
+  const adminIDs = ["123456789012345678"]; // Discord ID admin
+  protectAdmin(adminIDs);
+</script>
+</body>
+</html>

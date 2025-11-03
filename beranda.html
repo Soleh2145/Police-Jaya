@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beranda | SYSTEM PD MONARCH</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="logo">SYSTEM PD MONARCH</div>
+  <ul>
+    <li><a href="beranda.html" class="active">Beranda</a></li>
+    <li><a href="sim.html">Pembuatan SIM</a></li>
+    <li><a href="skck.html">Pembuatan SKCK</a></li>
+    <li><a href="pendaftaran.html">Pendaftaran</a></li>
+    <li><a href="regulasi.html">Regulasi</a></li>
+    <li id="adminTab" style="display:none;"><a href="admin.html">Admin: Duty & Cuti</a></li>
+    <li><a href="#" id="logoutBtn">Logout</a></li>
+  </ul>
+</nav>
+
+<main>
+  <h1>Selamat Datang di Sistem Pelayanan PD MONARCH</h1>
+  <p>Portal pelayanan roleplay — pilih layanan di bawah untuk mengajukan.</p>
+  
+  <div class="status-bar">
+    <span class="open">SIM: Dibuka</span>
+    <span class="open">Perpanjang SIM: Dibuka</span>
+    <span class="open">SKCK: Dibuka</span>
+    <span class="open">Pendaftaran: Dibuka</span>
+  </div>
+
+  <div class="service-grid">
+    <a href="sim.html" class="card">Pembuatan SIM</a>
+    <a href="skck.html" class="card">Pembuatan SKCK</a>
+    <a href="pendaftaran.html" class="card">Pendaftaran</a>
+    <a href="regulasi.html" class="card">Regulasi</a>
+  </div>
+</main>
+
+<script src="script.js"></script>
+<script>
+  const adminIDs = ["123456789012345678"]; // ganti dengan Discord ID admin
+  checkLogin(adminIDs);
+</script>
+</body>
+</html>
