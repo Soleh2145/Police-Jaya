@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PD Monarch System</title>
-  <script>
-    // Kalau udah login langsung ke beranda
-    if (localStorage.getItem("discordUser")) {
-      window.location.href = "beranda.html";
-    } else {
-      window.location.href = "login.html";
-    }
-  </script>
+  <meta charset="UTF-8">
+  <title>Login Discord | PD MONARCH</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body></body>
+<body style="display:flex;justify-content:center;align-items:center;height:100vh;flex-direction:column;">
+  <h2>🔰 SYSTEM PD MONARCH</h2>
+  <p>Login dengan Discord untuk melanjutkan</p>
+  <button onclick="loginDiscord()">Login Discord</button>
+
+  <script src="script.js"></script>
+</body>
 </html>
