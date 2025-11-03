@@ -1,85 +1,83 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pembuatan SIM | SYSTEM PD MONARCH</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Perpanjangan SIM | PD Monarch</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #0f172a; color: white; font-family: 'Poppins', sans-serif; }
+    .card { background: rgba(255,255,255,0.1); border-radius: 10px; padding: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.4); }
+    .input-field { width: 100%; background: rgba(255,255,255,0.15); border: none; border-radius: 8px; padding: 10px; color: white; outline: none; }
+    .input-field::placeholder { color: #cbd5e1; }
+    .submit-btn { background-color: #3b82f6; color: white; padding: 10px 20px; border-radius: 8px; font-weight: bold; transition: 0.3s; }
+    .submit-btn:hover { background-color: #2563eb; }
+  </style>
 </head>
 <body>
-<nav>
-  <div class="logo">SYSTEM PD MONARCH</div>
-  <ul>
-    <li><a href="beranda.html">Beranda</a></li>
-    <li><a href="#" id="logoutBtn">Logout</a></li>
-  </ul>
-</nav>
+  <nav class="bg-blue-900 text-white p-4 flex justify-between items-center">
+    <h1 class="text-lg font-bold">SYSTEM PD MONARCH</h1>
+    <div class="space-x-4">
+      <a href="beranda.html" class="bg-blue-800 px-3 py-1 rounded hover:bg-blue-700">Beranda</a>
+      <button id="logoutBtn" class="bg-red-600 px-3 py-1 rounded hover:bg-red-700">Logout</button>
+    </div>
+  </nav>
 
-<main>
-  <h1>Formulir Pembuatan SIM</h1>
-  <p>Lengkapi formulir di bawah ini untuk mengajukan pembuatan SIM.</p>
+  <div class="flex justify-center items-center min-h-screen">
+    <div class="card max-w-md w-full">
+      <h2 class="text-2xl font-bold text-center mb-2">Formulir Perpanjangan SIM</h2>
+      <p class="text-center text-gray-300 mb-6">Isi data berikut dengan benar untuk mengajukan perpanjangan SIM.</p>
 
-  <form id="simForm" class="form-box">
-    <input type="text" id="icName" placeholder="Nama In-Character (IC)" required>
-    <input type="text" id="umur" placeholder="Umur IC" required>
-    <input type="text" id="alamat" placeholder="Alamat IC" required>
-    <select id="jenisSim" required>
-      <option value="">Pilih Jenis SIM</option>
-      <option value="SIM A">SIM A</option>
-      <option value="SIM C">SIM C</option>
-      <option value="SIM D">SIM D</option>
-    </select>
-    <textarea id="alasan" placeholder="Alasan mengajukan SIM" rows="4" required></textarea>
-    <button type="submit">Kirim Pengajuan</button>
-    <p id="statusMsg"></p>
-  </form>
-</main>
+      <form id="simForm" class="space-y-4">
+        <input type="text" id="namaIC" class="input-field" placeholder="Nama In-Character (IC)" required>
+        <input type="text" id="nomorSim" class="input-field" placeholder="Nomor SIM Lama" required>
+        <input type="text" id="jenisSim" class="input-field" placeholder="Jenis SIM (A/B/C)" required>
+        <textarea id="alasan" class="input-field" rows="3" placeholder="Alasan perpanjangan" required></textarea>
 
-<script src="script.js"></script>
-<script>
-checkLogin();
+        <button type="submit" class="submit-btn w-full">Kirim Pengajuan</button>
+      </form>
+    </div>
+  </div>
 
-const webhook = "https://discord.com/api/webhooks/1434552675084664982/JK_VY1qdupQwzyKzCabN_KxasyFTHM_85EwIEbW_uUcMcBJsEjKWCuW7LeRSNTLkoQ2d";
+  <script>
+    const user = JSON.parse(localStorage.getItem("discordUser") || "{}");
+    if (!user.id) window.location.href = "login.html";
 
-document.getElementById("simForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  const nama = document.getElementById("icName").value;
-  const umur = document.getElementById("umur").value;
-  const alamat = document.getElementById("alamat").value;
-  const jenis = document.getElementById("jenisSim").value;
-  const alasan = document.getElementById("alasan").value;
-  const statusMsg = document.getElementById("statusMsg");
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("discordUser");
+      window.location.href = "login.html";
+    });
 
-  const user = localStorage.getItem("discord_name");
-  const embed = {
-    title: "Pengajuan Pembuatan SIM",
-    color: 3447003,
-    fields: [
-      { name: "Discord", value: user },
-      { name: "Nama IC", value: nama },
-      { name: "Umur", value: umur },
-      { name: "Alamat", value: alamat },
-      { name: "Jenis SIM", value: jenis },
-      { name: "Alasan", value: alasan }
-    ],
-    footer: { text: "Dikirim otomatis dari PD MONARCH System" }
-  };
+    const webhookURL = "https://discord.com/api/webhooks/YOUR_WEBHOOK_FOR_SIM";
 
-  const res = await fetch(webhook, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ embeds: [embed] })
-  });
+    document.getElementById("simForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = {
+        nama: document.getElementById("namaIC").value,
+        nomor: document.getElementById("nomorSim").value,
+        jenis: document.getElementById("jenisSim").value,
+        alasan: document.getElementById("alasan").value,
+        discordUser: user.username || "Tidak diketahui"
+      };
 
-  if (res.ok) {
-    statusMsg.textContent = "✅ Pengajuan berhasil dikirim!";
-    statusMsg.style.color = "#5af77d";
-    e.target.reset();
-  } else {
-    statusMsg.textContent = "❌ Gagal mengirim pengajuan.";
-    statusMsg.style.color = "#f75a5a";
-  }
-});
-</script>
+      const payload = {
+        embeds: [{
+          title: "🚗 Pengajuan Perpanjangan SIM",
+          color: 3066993,
+          fields: [
+            { name: "Nama IC", value: data.nama, inline: true },
+            { name: "Nomor SIM", value: data.nomor, inline: true },
+            { name: "Jenis SIM", value: data.jenis, inline: true },
+            { name: "Alasan", value: data.alasan, inline: false },
+            { name: "Pengaju Discord", value: data.discordUser, inline: false },
+          ]
+        }]
+      };
+
+      await fetch(webhookURL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      alert("✅ Pengajuan Perpanjangan SIM berhasil dikirim!");
+      e.target.reset();
+    });
+  </script>
 </body>
 </html>
