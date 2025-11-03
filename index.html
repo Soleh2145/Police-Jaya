@@ -32,7 +32,7 @@ body::before {
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
-  width: 400px;
+  width: 420px;
   position: relative;
   z-index: 1;
   backdrop-filter: blur(4px);
@@ -70,7 +70,7 @@ button:hover { background-color: #2e8fdc; }
   background-color: #5865f2; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s;
 }
 #discordLoginBtn:hover { background-color: #4752c4; }
-.log-list { max-height: 200px; overflow-y: auto; margin-top: 10px; border: 1px solid #3aaefc; padding: 6px; border-radius: 6px; font-size: 0.9em; }
+.log-list { max-height: 180px; overflow-y: auto; margin-top: 10px; border: 1px solid #3aaefc; padding: 6px; border-radius: 6px; font-size: 0.85em; }
 .log-item { margin-bottom: 4px; }
 </style>
 </head>
@@ -92,9 +92,7 @@ button:hover { background-color: #2e8fdc; }
 
     <!-- DUTY -->
     <form id="dutyForm" class="active">
-      <p style="color:#ffcc00; text-align:center; margin-bottom:10px;">
-         Pastikan nama yang tampil adalah <b>In-Character (IC)</b>!
-      </p>
+      <p style="color:#ffcc00; text-align:center; margin-bottom:10px;">Pastikan nama yang tampil adalah <b>In-Character (IC)</b>!</p>
       <input type="text" id="officerName" readonly placeholder="Discord Name" />
       <input type="text" id="officerIC" placeholder="Nama IC" required />
       <select id="rank" required>
@@ -105,19 +103,10 @@ button:hover { background-color: #2e8fdc; }
         <option value="Lieutenant">SERGENT</option>
         <option value="Captain">DETECTIVE SERGEANT</option>
         <option value="Commander">INSPECTOR</option>
-        <option value="Commander">DETECTIVE INSPECTOR</option>
-        <option value="Commander">CHIEF INSPECTOR</option>
-        <option value="Commander">SUPERINTENDENT</option>
-        <option value="Commander">DETECTIVE SUPERINTENDENT</option>
-        <option value="Commander">CHIEF SUPERINTDENT</option>
-        <option value="Commander">COMANDER</option>
         <option value="Deputy Commissioner">Deputy Commissioner</option>
         <option value="Commissioner">Commissioner</option>
       </select>
-      <textarea id="note" placeholder="LIST DUTY 
--
--
--" rows="5" required></textarea>
+      <textarea id="note" placeholder="LIST DUTY\n-\n-\n-" rows="5" required></textarea>
       <label> Upload 3 Foto Duty</label>
       <input type="file" id="photo1" accept="image/*" required />
       <input type="file" id="photo2" accept="image/*" required />
@@ -130,9 +119,7 @@ button:hover { background-color: #2e8fdc; }
 
     <!-- CUTI -->
     <form id="cutiForm">
-      <p style="color:#ffcc00; text-align:center; margin-bottom:10px;">
-        Pastikan nama yang tampil adalah <b>In-Character (IC)</b>!
-      </p>
+      <p style="color:#ffcc00; text-align:center; margin-bottom:10px;">Pastikan nama yang tampil adalah <b>In-Character (IC)</b>!</p>
       <input type="text" id="officerNameCuti" readonly placeholder="Nama Discord" />
       <input type="text" id="officerICCuti" placeholder="Masukkan Nama In-Character (IC)" required />
       <select id="rankCuti" required>
@@ -143,12 +130,6 @@ button:hover { background-color: #2e8fdc; }
         <option value="Lieutenant">SERGENT</option>
         <option value="Captain">DETECTIVE SERGEANT</option>
         <option value="Commander">INSPECTOR</option>
-        <option value="Commander">DETECTIVE INSPECTOR</option>
-        <option value="Commander">CHIEF INSPECTOR</option>
-        <option value="Commander">SUPERINTENDENT</option>
-        <option value="Commander">DETECTIVE SUPERINTENDENT</option>
-        <option value="Commander">CHIEF SUPERINTDENT</option>
-        <option value="Commander">COMANDER</option>
         <option value="Deputy Commissioner">Deputy Commissioner</option>
         <option value="Commissioner">Commissioner</option>
       </select>
@@ -161,9 +142,7 @@ button:hover { background-color: #2e8fdc; }
 
     <!-- LOKET PELAYANAN -->
     <form id="loketForm">
-      <p style="color:#ffcc00; text-align:center; margin-bottom:10px;">
-        Silakan isi form pelayanan!
-      </p>
+      <p style="color:#ffcc00; text-align:center; margin-bottom:10px;">Silakan isi form pelayanan!</p>
       <input type="text" id="loketName" readonly placeholder="Discord Name" />
       <input type="text" id="loketIC" placeholder="Nama IC" required />
       <select id="loketJenis" required>
@@ -177,7 +156,11 @@ button:hover { background-color: #2e8fdc; }
       <textarea id="loketCatatan" placeholder="Catatan / Permohonan..." rows="4" required></textarea>
       <button type="submit">Kirim Permohonan</button>
       <p id="statusLoket"></p>
-      <div id="logLoket" class="log-list"></div>
+      <div id="logLoketSIM" class="log-list"></div>
+      <div id="logLoketSKCK" class="log-list"></div>
+      <div id="logLoketSuratKeramaian" class="log-list"></div>
+      <div id="logLoketPlate" class="log-list"></div>
+      <div id="logLoketUnimpound" class="log-list"></div>
     </form>
   </div>
 </div>
@@ -250,15 +233,17 @@ function updatePreview() {
   });
 }
 
-// === WEBHOOK & THREAD ===
-const webhookDuty = "https://discord.com/api/webhooks/1434552675084664982/JK_VY1qdupQwzyKzCabN_KxasyFTHM_85EwIEbW_uUcMcBJsEjKWCuW7LeRSNTLkoQ2d";
-const webhookCuti = "https://discord.com/api/webhooks/1434552623356317716/kcdT43fdBkVPxv6sW_oQjtViAfIdYmDIE7gghDaSFz-OBhePfBVGcIhSc_QBdWmU5xLr";
-const webhookLoket = "https://discord.com/api/webhooks/1434898452596396224/meK9SFxqOhiB6PpkYsjMecW7MTPaya-xZ35bySgXaWocgpIEX_OWxApw3xgX2P9T7B2L";
-let threads = {}; // nanti bisa auto-create thread untuk IC baru
+// === WEBHOOK ===
+const webhookDuty = "YOUR_WEBHOOK_DUTY";
+const webhookCuti = "YOUR_WEBHOOK_CUTI";
+const webhookLoket = "YOUR_WEBHOOK_LOKET";
 
-// --- Helper: add log ke halaman ---
-function addLog(form, text) {
-  const logDiv = document.getElementById(form);
+// Thread dummy
+let threads = {};
+
+// === HELPER LOG ===
+function addLog(logId, text) {
+  const logDiv = document.getElementById(logId);
   const item = document.createElement("div");
   item.className = "log-item";
   item.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
@@ -273,12 +258,7 @@ document.getElementById("dutyForm").addEventListener("submit", async e => {
   if(!/^[A-Za-z0-9_]{3,20}$/.test(ic)){ status.textContent="❌ Format nama IC salah!"; status.className="error"; return; }
 
   let threadID = threads[ic];
-  if(!threadID){
-    // Auto-create thread (Dummy example, di real harus pake bot backend)
-    threadID = "AUTO_THREAD_ID_" + ic;
-    threads[ic] = threadID;
-    addLog("logDuty", `Thread baru dibuat untuk IC ${ic}`);
-  }
+  if(!threadID){ threadID = "AUTO_THREAD_" + ic; threads[ic] = threadID; addLog("logDuty", `Thread baru dibuat untuk IC ${ic}`); }
 
   const rankVal = document.getElementById("rank").value;
   const noteVal = document.getElementById("note").value;
@@ -293,16 +273,10 @@ document.getElementById("dutyForm").addEventListener("submit", async e => {
   try{
     const res = await fetch(`${webhookDuty}?wait=true&thread_id=${threadID}`, { method:"POST", body: formData });
     if(res.ok){ 
-      status.textContent="✅ Laporan duty berhasil dikirim!";
-      status.className="success";
-      e.target.reset();
-      photoPreview.innerHTML="";
+      status.textContent="✅ Laporan duty berhasil dikirim!"; status.className="success";
+      e.target.reset(); photoPreview.innerHTML="";
       addLog("logDuty", `Duty dikirim untuk IC ${ic}`);
-    }else{
-      status.textContent="❌ Gagal kirim laporan duty.";
-      status.className="error";
-      addLog("logDuty", `Gagal kirim duty IC ${ic}`);
-    }
+    } else { status.textContent="❌ Gagal kirim duty"; status.className="error"; addLog("logDuty", `Gagal kirim duty IC ${ic}`);}
   }catch(err){ status.textContent="⚠️ Kesalahan jaringan: "+err; status.className="error"; }
 });
 
@@ -313,38 +287,28 @@ document.getElementById("cutiForm").addEventListener("submit", async e=>{
   const ic = document.getElementById("officerICCuti").value.trim();
   if(!ic){ status.textContent="❌ Isi nama IC!"; status.className="error"; return; }
 
-  let threadID = threads[ic];
-  if(!threadID){
-    threadID = "AUTO_THREAD_ID_" + ic;
-    threads[ic] = threadID;
-    addLog("logCuti", `Thread baru dibuat untuk IC ${ic}`);
-  }
+  let threadID = threads[ic]; if(!threadID){ threadID = "AUTO_THREAD_" + ic; threads[ic] = threadID; addLog("logCuti", `Thread baru dibuat untuk IC ${ic}`); }
 
   const rankVal = document.getElementById("rankCuti").value;
   const tanggalVal = document.getElementById("tanggalCuti").value;
   const alasanVal = document.getElementById("alasanCuti").value;
 
   const embed = {
-    title: "Laporan Cuti",
-    color: 16753920,
+    title:"Laporan Cuti", color:16753920,
     fields:[
-      { name:"Officer Discord", value:loggedUser.username, inline:true },
-      { name:"Officer IC", value:ic, inline:true },
-      { name:"Pangkat", value:rankVal, inline:true },
-      { name:"Tanggal", value:tanggalVal },
-      { name:"Alasan", value:alasanVal }
+      {name:"Officer Discord", value:loggedUser.username, inline:true},
+      {name:"Officer IC", value:ic, inline:true},
+      {name:"Pangkat", value:rankVal, inline:true},
+      {name:"Tanggal", value:tanggalVal},
+      {name:"Alasan", value:alasanVal}
     ],
-    footer:{ text: new Date().toLocaleString("id-ID",{timeZone:"Asia/Jakarta"}) }
+    footer:{text:new Date().toLocaleString("id-ID",{timeZone:"Asia/Jakarta"})}
   };
 
   try{
-    const res = await fetch(`${webhookCuti}?wait=true&thread_id=${threadID}`, {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ embeds:[embed] })
-    });
-    if(res.ok){ status.textContent="✅ Laporan cuti berhasil dikirim!"; status.className="success"; e.target.reset(); addLog("logCuti", `Cuti dikirim untuk IC ${ic}`); }
-    else { status.textContent="❌ Gagal kirim laporan cuti."; status.className="error"; addLog("logCuti", `Gagal kirim cuti IC ${ic}`); }
+    const res = await fetch(`${webhookCuti}?wait=true&thread_id=${threadID}`, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ embeds:[embed] }) });
+    if(res.ok){ status.textContent="✅ Laporan cuti berhasil dikirim!"; status.className="success"; e.target.reset(); addLog("logCuti", `Cuti dikirim untuk IC ${ic}`);}
+    else{ status.textContent="❌ Gagal kirim cuti"; status.className="error"; addLog("logCuti", `Gagal kirim cuti IC ${ic}`);}
   }catch(err){ status.textContent="⚠️ Kesalahan jaringan: "+err; status.className="error"; }
 });
 
@@ -358,25 +322,24 @@ document.getElementById("loketForm").addEventListener("submit", async e=>{
   if(!ic || !jenis){ status.textContent="❌ Lengkapi semua form!"; status.className="error"; return; }
 
   const embed = {
-    title: "Permohonan Loket Pelayanan",
-    color: 3447003,
+    title:"Permohonan Loket Pelayanan", color:3447003,
     fields:[
-      { name:"Officer Discord", value:loggedUser.username, inline:true },
-      { name:"Officer IC", value:ic, inline:true },
-      { name:"Jenis Pelayanan", value:jenis },
-      { name:"Catatan", value:catatan }
+      {name:"Officer Discord", value:loggedUser.username, inline:true},
+      {name:"Officer IC", value:ic, inline:true},
+      {name:"Jenis Pelayanan", value:jenis},
+      {name:"Catatan", value:catatan}
     ],
-    footer:{ text: new Date().toLocaleString("id-ID",{timeZone:"Asia/Jakarta"}) }
+    footer:{text:new Date().toLocaleString("id-ID",{timeZone:"Asia/Jakarta"})}
   };
 
   try{
-    const res = await fetch(webhookLoket, {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body: JSON.stringify({ embeds:[embed] })
-    });
-    if(res.ok){ status.textContent="✅ Permohonan berhasil dikirim!"; status.className="success"; e.target.reset(); addLog("logLoket", `Permohonan Loket dikirim untuk IC ${ic}`); }
-    else{ status.textContent="❌ Gagal kirim permohonan."; status.className="error"; addLog("logLoket", `Gagal kirim permohonan Loket IC ${ic}`); }
+    const res = await fetch(webhookLoket, { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ embeds:[embed] }) });
+    if(res.ok){
+      status.textContent="✅ Permohonan berhasil dikirim!"; status.className="success"; e.target.reset();
+      addLog(`logLoket${jenis.replace(/\s+/g,'')}`, `Permohonan ${jenis} dikirim untuk IC ${ic}`);
+    }else{
+      status.textContent="❌ Gagal kirim permohonan"; status.className="error"; addLog(`logLoket${jenis.replace(/\s+/g,'')}`, `Gagal kirim ${jenis} IC ${ic}`);
+    }
   }catch(err){ status.textContent="⚠️ Kesalahan jaringan: "+err; status.className="error"; }
 });
 </script>
