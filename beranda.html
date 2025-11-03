@@ -2,120 +2,46 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Beranda | PD Monarch</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    <nav>
-  <h1>SYSTEM PD MONARCH</h1>
-  <div style="display: flex; align-items: center; gap: 10px;">
-    <a href="beranda.html">Beranda</a>
-    <a href="info.html">Kontak</a>
-    <div id="discordUser" style="display:none;">
-      <img id="avatar" src="" alt="discord">
-      <span id="username"></span>
-    </div>
-    <button id="logoutBtn">Logout</button>
-  </div>
-</nav>
-    body {
-      background: #e9edf3;
-      font-family: 'Poppins', sans-serif;
-    }
-    .card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    .nav-btn {
-      background: #1e3a8a;
-      color: white;
-      border-radius: 8px;
-      padding: 8px 16px;
-      transition: 0.3s;
-    }
-    .nav-btn:hover {
-      background: #3b82f6;
-    }
-  </style>
+  <title>Beranda | PD MONARCH</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen">
-
-  <!-- Navbar -->
-  <nav class="bg-blue-900 text-white p-4 flex justify-between items-center">
-    <h1 class="text-lg font-bold">SYSTEM PD MONARCH</h1>
-    <div class="space-x-4">
-      <a href="beranda.html" class="nav-btn">Beranda</a>
-      <a href="kontak.html" class="nav-btn">Kontak</a>
-      <button id="logoutBtn" class="nav-btn bg-red-600 hover:bg-red-700">Logout</button>
+<body onload="protectPage()">
+  <nav>
+    <h1>PD MONARCH SYSTEM</h1>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="beranda.html">Beranda</a>
+      <a href="info.html">Kontak</a>
+      <div id="discordUser" style="display:none;">
+        <img id="avatar" src="">
+        <span id="username"></span>
+      </div>
+      <button onclick="logout()">Logout</button>
     </div>
   </nav>
 
-  <!-- Container utama -->
-  <div class="max-w-6xl mx-auto mt-10 p-6 card">
-    <h2 class="text-2xl font-bold text-center mb-2">Selamat Datang di Sistem Pelayanan PD Monarch</h2>
-    <p class="text-center text-gray-700 mb-6">Portal pelayanan roleplay — pilih layanan di bawah untuk mengajukan.</p>
+  <div class="container">
+    <h2 style="text-align:center;color:#58a6ff;">Selamat Datang di Sistem Pelayanan PD MONARCH</h2>
+    <p style="text-align:center;">Pilih layanan di bawah ini untuk mengajukan permohonan:</p>
 
-    <!-- Tombol Layanan -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
-      <a href="sim.html" class="p-4 card hover:bg-blue-50">
-        <h3 class="font-bold text-blue-800">Pembuatan SIM</h3>
-        <p class="text-gray-600 text-sm">Ajukan SIM baru untuk karakter (RP)</p>
-      </a>
-      <a href="perpanjang.html" class="p-4 card hover:bg-blue-50">
-        <h3 class="font-bold text-blue-800">Perpanjang SIM</h3>
-        <p class="text-gray-600 text-sm">Perpanjang masa berlaku SIM karakter</p>
-      </a>
-      <a href="skck.html" class="p-4 card hover:bg-blue-50">
-        <h3 class="font-bold text-blue-800">Pembuatan SKCK</h3>
-        <p class="text-gray-600 text-sm">Ajukan SKCK untuk keperluan RP</p>
-      </a>
-      <a href="pendaftaran.html" class="p-4 card hover:bg-blue-50">
-        <h3 class="font-bold text-blue-800">Pendaftaran</h3>
-        <p class="text-gray-600 text-sm">Informasi pendaftaran personel</p>
-      </a>
-      <a href="regulasi.html" class="p-4 card hover:bg-blue-50">
-        <h3 class="font-bold text-blue-800">Regulasi</h3>
-        <p class="text-gray-600 text-sm">Peraturan roleplay internal</p>
-      </a>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px;">
+      <a href="sim.html"><button>Pembuatan SIM</button></a>
+      <a href="skck.html"><button>Pembuatan SKCK</button></a>
+      <a href="regulasi.html"><button>Regulasi</button></a>
+      <a href="info.html"><button>Informasi Pendaftaran</button></a>
     </div>
 
-    <!-- Jadwal Operasional -->
-    <h3 class="text-xl font-bold text-center mt-10 mb-4">📅 Jadwal Operasional 📅</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
-      <div class="card p-4">
-        <h4 class="font-bold text-blue-800">Senin</h4>
-        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
-        <p>Shift Malam: 19.00 WIB - 20.30 WIB</p>
-        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
-      </div>
-      <div class="card p-4">
-        <h4 class="font-bold text-blue-800">Selasa</h4>
-        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
-        <p>Shift Malam: 19.00 WIB - 21.00 WIB</p>
-        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
-      </div>
-      <div class="card p-4">
-        <h4 class="font-bold text-blue-800">Rabu</h4>
-        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
-        <p>Shift Malam: 19.00 WIB - 21.00 WIB</p>
-        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
-      </div>
-      <div class="card p-4">
-        <h4 class="font-bold text-blue-800">Kamis</h4>
-        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
-        <p>Shift Malam: 19.00 WIB - 20.30 WIB</p>
-        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
-      </div>
-      <div class="card p-4">
-        <h4 class="font-bold text-blue-800">Jumat</h4>
-        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
-        <p>Shift Malam: 19.00 WIB - 20.30 WIB</p>
-        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
-      </div>
-      <div class="card p-4">
-        <h4 class="font-bold text-blue-800">Sabtu</h4>
-        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
-        <p>Shift Malam: 19.00 WIB - 21.00 WIB</p>
-        <p>Lokasi: MAPOLDA / H
+    <hr style="margin:30px 0;border-color:#30363d;">
+    <h3 style="text-align:center;">📅 Jadwal Operasional</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-top:20px;text-align:center;">
+      <div><strong>Senin</strong><br>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30<br>MAPOLDA</div>
+      <div><strong>Selasa</strong><br>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30<br>MAPOLDA</div>
+      <div><strong>Rabu</strong><br>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30<br>MAPOLDA</div>
+      <div><strong>Kamis</strong><br>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30<br>MAPOLDA</div>
+      <div><strong>Jumat</strong><br>SIM, Plate, Impound<br>15.30–17.00 | 19.30–21.00<br>HIGHWAY PATROL</div>
+      <div><strong>Sabtu</strong><br>SIM, Plate, Impound<br>15.30–17.00 | 19.30–21.00<br>HIGHWAY PATROL</div>
+    </div>
+  </div>
 
+  <script src="script.js"></script>
+</body>
+</html>
