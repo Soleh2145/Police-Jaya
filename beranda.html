@@ -1,77 +1,108 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pembuatan SKCK | SYSTEM PD MONARCH</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beranda | PD Monarch</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: #e9edf3;
+      font-family: 'Poppins', sans-serif;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .nav-btn {
+      background: #1e3a8a;
+      color: white;
+      border-radius: 8px;
+      padding: 8px 16px;
+      transition: 0.3s;
+    }
+    .nav-btn:hover {
+      background: #3b82f6;
+    }
+  </style>
 </head>
-<body>
-<nav>
-  <div class="logo">SYSTEM PD MONARCH</div>
-  <ul>
-    <li><a href="beranda.html">Beranda</a></li>
-    <li><a href="#" id="logoutBtn">Logout</a></li>
-  </ul>
-</nav>
+<body class="min-h-screen">
 
-<main>
-  <h1>Formulir Pembuatan SKCK</h1>
-  <p>Silakan isi data berikut dengan benar untuk mengajukan SKCK.</p>
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white p-4 flex justify-between items-center">
+    <h1 class="text-lg font-bold">SYSTEM PD MONARCH</h1>
+    <div class="space-x-4">
+      <a href="beranda.html" class="nav-btn">Beranda</a>
+      <a href="kontak.html" class="nav-btn">Kontak</a>
+      <button id="logoutBtn" class="nav-btn bg-red-600 hover:bg-red-700">Logout</button>
+    </div>
+  </nav>
 
-  <form id="skckForm" class="form-box">
-    <input type="text" id="icName" placeholder="Nama In-Character (IC)" required>
-    <input type="text" id="umur" placeholder="Umur IC" required>
-    <input type="text" id="alamat" placeholder="Alamat IC" required>
-    <textarea id="tujuan" placeholder="Tujuan pembuatan SKCK" rows="4" required></textarea>
-    <button type="submit">Kirim Pengajuan</button>
-    <p id="statusMsg"></p>
-  </form>
-</main>
+  <!-- Container utama -->
+  <div class="max-w-6xl mx-auto mt-10 p-6 card">
+    <h2 class="text-2xl font-bold text-center mb-2">Selamat Datang di Sistem Pelayanan PD Monarch</h2>
+    <p class="text-center text-gray-700 mb-6">Portal pelayanan roleplay — pilih layanan di bawah untuk mengajukan.</p>
 
-<script src="script.js"></script>
-<script>
-checkLogin();
+    <!-- Tombol Layanan -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+      <a href="sim.html" class="p-4 card hover:bg-blue-50">
+        <h3 class="font-bold text-blue-800">Pembuatan SIM</h3>
+        <p class="text-gray-600 text-sm">Ajukan SIM baru untuk karakter (RP)</p>
+      </a>
+      <a href="perpanjang.html" class="p-4 card hover:bg-blue-50">
+        <h3 class="font-bold text-blue-800">Perpanjang SIM</h3>
+        <p class="text-gray-600 text-sm">Perpanjang masa berlaku SIM karakter</p>
+      </a>
+      <a href="skck.html" class="p-4 card hover:bg-blue-50">
+        <h3 class="font-bold text-blue-800">Pembuatan SKCK</h3>
+        <p class="text-gray-600 text-sm">Ajukan SKCK untuk keperluan RP</p>
+      </a>
+      <a href="pendaftaran.html" class="p-4 card hover:bg-blue-50">
+        <h3 class="font-bold text-blue-800">Pendaftaran</h3>
+        <p class="text-gray-600 text-sm">Informasi pendaftaran personel</p>
+      </a>
+      <a href="regulasi.html" class="p-4 card hover:bg-blue-50">
+        <h3 class="font-bold text-blue-800">Regulasi</h3>
+        <p class="text-gray-600 text-sm">Peraturan roleplay internal</p>
+      </a>
+    </div>
 
-const webhook = "https://discord.com/api/webhooks/1434552623356317716/kcdT43fdBkVPxv6sW_oQjtViAfIdYmDIE7gghDaSFz-OBhePfBVGcIhSc_QBdWmU5xLr";
-
-document.getElementById("skckForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  const nama = document.getElementById("icName").value;
-  const umur = document.getElementById("umur").value;
-  const alamat = document.getElementById("alamat").value;
-  const tujuan = document.getElementById("tujuan").value;
-  const statusMsg = document.getElementById("statusMsg");
-
-  const user = localStorage.getItem("discord_name");
-  const embed = {
-    title: "Pengajuan Pembuatan SKCK",
-    color: 15158332,
-    fields: [
-      { name: "Discord", value: user },
-      { name: "Nama IC", value: nama },
-      { name: "Umur", value: umur },
-      { name: "Alamat", value: alamat },
-      { name: "Tujuan", value: tujuan }
-    ],
-    footer: { text: "Dikirim otomatis dari PD MONARCH System" }
-  };
-
-  const res = await fetch(webhook, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ embeds: [embed] })
-  });
-
-  if (res.ok) {
-    statusMsg.textContent = "✅ Pengajuan berhasil dikirim!";
-    statusMsg.style.color = "#5af77d";
-    e.target.reset();
-  } else {
-    statusMsg.textContent = "❌ Gagal mengirim pengajuan.";
-    statusMsg.style.color = "#f75a5a";
-  }
-});
-</script>
-</body>
-</html>
+    <!-- Jadwal Operasional -->
+    <h3 class="text-xl font-bold text-center mt-10 mb-4">📅 Jadwal Operasional 📅</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
+      <div class="card p-4">
+        <h4 class="font-bold text-blue-800">Senin</h4>
+        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
+        <p>Shift Malam: 19.00 WIB - 20.30 WIB</p>
+        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
+      </div>
+      <div class="card p-4">
+        <h4 class="font-bold text-blue-800">Selasa</h4>
+        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
+        <p>Shift Malam: 19.00 WIB - 21.00 WIB</p>
+        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
+      </div>
+      <div class="card p-4">
+        <h4 class="font-bold text-blue-800">Rabu</h4>
+        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
+        <p>Shift Malam: 19.00 WIB - 21.00 WIB</p>
+        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
+      </div>
+      <div class="card p-4">
+        <h4 class="font-bold text-blue-800">Kamis</h4>
+        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
+        <p>Shift Malam: 19.00 WIB - 20.30 WIB</p>
+        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
+      </div>
+      <div class="card p-4">
+        <h4 class="font-bold text-blue-800">Jumat</h4>
+        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
+        <p>Shift Malam: 19.00 WIB - 20.30 WIB</p>
+        <p>Lokasi: MAPOLDA / HIGHWAY PATROL</p>
+      </div>
+      <div class="card p-4">
+        <h4 class="font-bold text-blue-800">Sabtu</h4>
+        <p>Shift Sore: 15.30 WIB - 17.00 WIB</p>
+        <p>Shift Malam: 19.00 WIB - 21.00 WIB</p>
+        <p>Lokasi: MAPOLDA / H
