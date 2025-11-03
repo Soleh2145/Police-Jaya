@@ -2,8 +2,96 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Beranda | PD MONARCH</title>
+  <title>Beranda | PD MONARCH SYSTEM</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .hero {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero h2 {
+      color: #58a6ff;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #c9d1d9;
+      font-size: 15px;
+    }
+
+    .layanan {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 30px 0;
+    }
+
+    .layanan button {
+      background-color: #238636;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .layanan button:hover {
+      background-color: #2ea043;
+      transform: translateY(-2px);
+    }
+
+    .jadwal-container {
+      background-color: #0d1117;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    .jadwal-title {
+      text-align: center;
+      color: #58a6ff;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .jadwal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      text-align: center;
+    }
+
+    .jadwal-item {
+      background-color: #161b22;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+      transition: 0.2s;
+    }
+
+    .jadwal-item:hover {
+      background-color: #1f242b;
+      transform: translateY(-3px);
+    }
+
+    .jadwal-item b {
+      color: #fff;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .jadwal-item small {
+      color: #8b949e;
+      display: block;
+    }
+  </style>
 </head>
 <body onload="protectPage()">
   <nav>
@@ -20,25 +108,52 @@
   </nav>
 
   <div class="container">
-    <h2 style="text-align:center;color:#58a6ff;">Selamat Datang di Sistem Pelayanan PD MONARCH</h2>
-    <p style="text-align:center;">Pilih layanan di bawah ini untuk mengajukan permohonan:</p>
+    <div class="hero">
+      <h2>Selamat Datang di Sistem Pelayanan PD MONARCH</h2>
+      <p>Pilih layanan di bawah ini untuk mengajukan permohonan roleplay:</p>
+    </div>
 
-    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:20px;">
+    <div class="layanan">
       <a href="sim.html"><button>Pembuatan SIM</button></a>
       <a href="skck.html"><button>Pembuatan SKCK</button></a>
       <a href="regulasi.html"><button>Regulasi</button></a>
       <a href="info.html"><button>Informasi Pendaftaran</button></a>
     </div>
 
-    <hr style="margin:30px 0;border-color:#30363d;">
-    <h3 style="text-align:center;">📅 Jadwal Operasional</h3>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-top:20px;text-align:center;">
-      <div><strong>Senin</strong><br>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30<br>MAPOLDA</div>
-      <div><strong>Selasa</strong><br>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30<br>MAPOLDA</div>
-      <div><strong>Rabu</strong><br>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30<br>MAPOLDA</div>
-      <div><strong>Kamis</strong><br>SKCK & Izin Berburu<br>15.30–17.00 | 19.00–20.30<br>MAPOLDA</div>
-      <div><strong>Jumat</strong><br>SIM, Plate, Impound<br>15.30–17.00 | 19.30–21.00<br>HIGHWAY PATROL</div>
-      <div><strong>Sabtu</strong><br>SIM, Plate, Impound<br>15.30–17.00 | 19.30–21.00<br>HIGHWAY PATROL</div>
+    <div class="jadwal-container">
+      <div class="jadwal-title">📅 Jadwal Operasional</div>
+      <div class="jadwal-grid">
+        <div class="jadwal-item">
+          <b>Senin</b>
+          SKCK & Izin Berburu<br>
+          <small>15.30–17.00 | 19.00–20.30<br>MAPOLDA</small>
+        </div>
+        <div class="jadwal-item">
+          <b>Selasa</b>
+          SKCK & Izin Berburu<br>
+          <small>15.30–17.00 | 19.00–20.30<br>MAPOLDA</small>
+        </div>
+        <div class="jadwal-item">
+          <b>Rabu</b>
+          SKCK & Izin Berburu<br>
+          <small>15.30–17.00 | 19.00–20.30<br>MAPOLDA</small>
+        </div>
+        <div class="jadwal-item">
+          <b>Kamis</b>
+          SKCK & Izin Berburu<br>
+          <small>15.30–17.00 | 19.00–20.30<br>MAPOLDA</small>
+        </div>
+        <div class="jadwal-item">
+          <b>Jumat</b>
+          SIM, Plate, Impound<br>
+          <small>15.30–17.00 | 19.30–21.00<br>HIGHWAY PATROL</small>
+        </div>
+        <div class="jadwal-item">
+          <b>Sabtu</b>
+          SIM, Plate, Impound<br>
+          <small>15.30–17.00 | 19.30–21.00<br>HIGHWAY PATROL</small>
+        </div>
+      </div>
     </div>
   </div>
 
