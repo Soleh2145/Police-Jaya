@@ -1,435 +1,384 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Website LVPD Monarch</title>
-  <style>
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(-45deg, #e74c3c, #8e44ad, #3498db, #2ecc71);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #fff;
-    }
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-    header { text-align: center; padding: 25px 0; background-color: rgba(0, 0, 0, 0.5); }
-    header h1 { margin: 0; font-size: 32px; }
-
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      background-color: rgba(0, 0, 0, 0.3);
-      position: relative;
-    }
-    nav button {
-      background: none; border: none; color: white;
-      padding: 12px 18px; font-size: 15px; cursor: pointer;
-      transition: background 0.2s;
-    }
-    nav button:hover, .dropdown:hover .dropbtn { background-color: rgba(255,255,255,0.12); }
-
-    /* Dropdown SOP */
-    .dropdown { position: relative; display: inline-block; }
-    .dropbtn::after { content: " ⋮"; font-size: 16px; }
-    .dropdown-content {
-      display: none;
-      position: absolute;
-      background-color: rgba(0,0,0,0.85);
-      min-width: 160px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.4);
-      z-index: 1;
-    }
-    .dropdown-content button {
-      display: block;
-      width: 100%;
-      text-align: left;
-      padding: 10px 14px;
-      border: none; background: none; color: #fff; cursor: pointer;
-    }
-    .dropdown-content button:hover { background: rgba(255,255,255,0.15); }
-    .dropdown:hover .dropdown-content { display: block; }
-
-    .container {
-      max-width: 980px; margin: 30px auto;
-      background-color: rgba(0, 0, 0, 0.45);
-      padding: 26px; border-radius: 12px;
-      box-shadow: 0 0 16px rgba(0,0,0,0.35);
-    }
-    h2 { border-bottom: 2px solid #ffffff33; padding-bottom: 10px; margin-bottom: 18px; }
-    ol, ul, p { line-height: 1.7; color: #f1f1f1; }
-    li { margin-bottom: 10px; }
-
-    footer {
-      text-align: center; padding: 18px; color: #eee;
-      font-size: 14px; margin-top: 30px;
-      background: rgba(0,0,0,0.45); border-top: 1px solid #ffffff22;
-    }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
-
-    .note { font-style: italic; color: #ffeb99; margin-top: 6px; }
-
-    @media (max-width: 600px) {
-      header h1 { font-size: 20px; }
-      nav button { padding: 10px 12px; font-size: 13px; }
-      .container { padding: 16px; margin: 16px; }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SYSTEM PD MONARCH</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: url("https://cdn.discordapp.com/attachments/123456789012345678/sapd-bg.jpg") no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  overflow-y: auto;
+}
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.65);
+  z-index: 0;
+  pointer-events: none;
+}
+.container {
+  background-color: rgba(28, 31, 38, 0.9);
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  width: 400px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  margin-top: 40px;
+  margin-bottom: 60px;
+}
+h2 { text-align: center; color: #3aaefc; text-shadow: 0 0 6px #3aaefc80; }
+.tabs { display: flex; justify-content: space-between; margin-bottom: 20px; }
+.tab {
+  flex: 1; padding: 10px; text-align: center; cursor: pointer;
+  background-color: #2a2f3a; border-radius: 8px; margin: 0 3px; transition: 0.2s;
+}
+.tab:hover { background-color: #3aaefc77; }
+.tab.active { background-color: #3aaefc; color: white; font-weight: bold; }
+form { display: none; }
+form.active { display: block; }
+input, textarea, select {
+  width: 100%; padding: 10px; margin: 8px 0; border: none; border-radius: 8px;
+  background-color: #2a2f3a; color: white;
+}
+button {
+  width: 100%; padding: 10px; border: none; border-radius: 8px;
+  background-color: #3aaefc; color: white; font-weight: bold; cursor: pointer; transition: 0.2s;
+}
+button:hover { background-color: #2e8fdc; }
+.success, .error {
+  text-align: center; margin-top: 10px; font-size: 0.9em;
+}
+.success { color: #5af77d; }
+.error { color: #f75a5a; }
+.photo-preview { margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
+.photo-preview img { width: 110px; height: 110px; object-fit: cover; border-radius: 10px; border: 2px solid #3aaefc; }
+#loginArea { text-align: center; margin-bottom: 20px; }
+#discordLoginBtn {
+  background-color: #5865f2; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s;
+}
+#discordLoginBtn:hover { background-color: #4752c4; }
+.log-list { max-height: 200px; overflow-y: auto; margin-top: 10px; border: 1px solid #3aaefc; padding: 6px; border-radius: 6px; font-size: 0.9em; }
+.log-item { margin-bottom: 4px; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Website LVPD Monarch</h1>
-  </header>
+<div class="container">
+  <h2>LVPD REPORT & CUTI SYSTEM</h2>
 
-  <nav>
-    <button onclick="showTab('beranda')">Beranda</button>
-    <button onclick="showTab('peraturan')">Peraturan</button>
-    <button onclick="showTab('panelcode')">Panel Code</button>
-    <button onclick="showTab('tencode')">Ten Code</button>
-    <button onclick="showTab('materi')">Materi Lainnya</button>
-    <div class="dropdown">
-      <button class="dropbtn">SOP</button>
-      <div class="dropdown-content">
-        <button onclick="showTab('sopkendaraan')">SOP Kendaraan</button>
-        <button onclick="showTab('sopdeteksi')">SOP Deteksi</button>
-        <button onclick="showTab('sopsenjata')">SOP Senjata</button>
-        <button onclick="showTab('soppatroli')">SOP Patroli</button>
-      </div>
-    </div>
-  </nav>
-
-  <div class="container">
-
-    <!-- Beranda -->
-    <div id="beranda" class="tab-content active">
-      <h2>Selamat Datang di LVPD Monarch</h2>
-      <p>
-        Ini adalah website resmi kepolisian Las Venturas - Monarch Roleplay.  
-        Silakan pilih menu di atas untuk melihat peraturan, SOP, panel code, dan materi.
-      </p>
-    </div>
-
-    <!-- PERATURAN -->
-    <div id="peraturan" class="tab-content">
-      <h2>Peraturan Kepolisian</h2>
-      <p>
-        Seluruh anggota kepolisian wajib mematuhi peraturan berikut. Pelanggaran akan dikenakan sanksi sesuai tingkat kesalahan.
-      </p>
-      <ol>
-        <li><b>Kehadiran</b> - Wajib hadir saat ada panggilan dinas...</li>
-        <li><b>Disiplin</b> - Wajib menggunakan seragam resmi saat bertugas...</li>
-        <li><b>Etika</b> - Hormati warga sipil dan rekan kerja...</li>
-        <li><b>Tindakan di Lapangan</b> - Tidak boleh abuse power...</li>
-        <li><b>Kendaraan</b> - Wajib menggunakan kendaraan dinas sesuai SOP...</li>
-        <li><b>Senjata</b> - Senjata berat hanya boleh digunakan saat perang besar...</li>
-        <li><b>Komunikasi</b> - Gunakan radio /110 dengan benar...</li>
-        <li><b>Lain-lain</b> - Aturan tambahan yang harus ditaati...</li>
-      </ol>
-    </div>
-
-    <!-- Panel Code -->
-    <div id="panelcode" class="tab-content">
-      <h2>Panel Code</h2>
-      <ul>
-        <li><b>Code 0:</b> Darurat Besar...</li>
-        <li><b>Code 1:</b> Pemantauan...</li>
-        <li><b>Code 2:</b> Respon Cepat Tanpa Sirine...</li>
-        <li><b>Code 3:</b> Respon Darurat Dengan Sirine...</li>
-        <li><b>Code 4:</b> Situasi Aman...</li>
-        <li><b>Code 5:</b> Pengawasan Diam-diam...</li>
-        <li><b>Code 6:</b> Investigasi...</li>
-        <li><b>Code 7:</b> Istirahat / Makan...</li>
-        <li><b>Code 8:</b> Tahanan Kabur...</li>
-        <li><b>Code 9:</b> Penyergapan...</li>
-      </ul>
-    </div>
-
-    <!-- Ten Code -->
-<div id="tencode" class="tab-content">
-  <h2>Ten Code</h2>
-  <p>📻 Daftar lengkap /110 untuk komunikasi via radio:</p>
-  <ul>
-    <li>10-0: Gunakan dengan hati-hati</li>
-    <li>10-1: Sinyal buruk</li>
-    <li>10-2: Sinyal baik</li>
-    <li>10-3: Hentikan transmisi</li>
-    <li>10-4: Afirmasi / Diterima</li>
-    <li>10-5: Teruskan pesan</li>
-    <li>10-6: Sibuk, tunggu</li>
-    <li>10-7: Tidak aktif / Off duty</li>
-    <li>10-8: Aktif / On duty</li>
-    <li>10-9: Ulangi pesan</li>
-    <li>10-10: Negatif / Tidak</li>
-    <li>10-11: Berbicara terlalu cepat</li>
-    <li>10-12: Ada pihak ketiga hadir</li>
-    <li>10-13: Kondisi / Informasi cuaca</li>
-    <li>10-14: Pengawalan</li>
-    <li>10-15: Tersangka dalam tahanan</li>
-    <li>10-16: Ambil tahanan</li>
-    <li>10-17: Dokumen / Tugas</li>
-    <li>10-18: Urusan mendesak</li>
-    <li>10-19: Kembali ke markas</li>
-    <li>10-20: Lokasi anda?</li>
-    <li>10-21: Hubungi via telepon</li>
-    <li>10-22: Abaikan pesan terakhir</li>
-    <li>10-23: Tiba di lokasi</li>
-    <li>10-24: Tugas selesai</li>
-    <li>10-25: Bertemu langsung</li>
-    <li>10-26: Tahan tersangka</li>
-    <li>10-27: Cek SIM</li>
-    <li>10-28: Cek plat kendaraan</li>
-    <li>10-29: Cek catatan kriminal</li>
-    <li>10-30: Penggunaan radio tidak sah</li>
-    <li>10-31: Kejahatan sedang terjadi</li>
-    <li>10-32: Ada orang bersenjata</li>
-    <li>10-33: Darurat, jangan ganggu</li>
-    <li>10-34: Gangguan besar</li>
-    <li>10-35: Informasi rahasia</li>
-    <li>10-36: Waktu sekarang</li>
-    <li>10-37: Identifikasi operator</li>
-    <li>10-38: Berhentikan kendaraan mencurigakan</li>
-    <li>10-39: Gunakan sirine</li>
-    <li>10-40: Tanpa sirine</li>
-    <li>10-41: Mulai dinas</li>
-    <li>10-42: Selesai dinas</li>
-    <li>10-43: Informasi</li>
-    <li>10-44: Izin meninggalkan area</li>
-    <li>10-45: Hewan mati di jalan</li>
-    <li>10-46: Membantu pengendara</li>
-    <li>10-47: Membutuhkan towing</li>
-    <li>10-48: Kecelakaan lalu lintas</li>
-    <li>10-49: Info rute</li>
-    <li>10-50: Kecelakaan kendaraan</li>
-    <li>10-51: Butuh towing</li>
-    <li>10-52: Butuh ambulans</li>
-    <li>10-53: Jalan macet</li>
-    <li>10-54: Hewan di jalan</li>
-    <li>10-55: Pengemudi mabuk</li>
-    <li>10-56: Pejalan kaki mabuk</li>
-    <li>10-57: Tabrak lari</li>
-    <li>10-58: Atur lalu lintas</li>
-    <li>10-59: Konvoi / Pengawalan</li>
-    <li>10-60: Patroli di area</li>
-    <li>10-61: Personil di area</li>
-    <li>10-62: Balas pesan</li>
-    <li>10-63: Persiapkan laporan</li>
-    <li>10-64: Siap menerima info</li>
-    <li>10-65: Laporan kasus</li>
-    <li>10-66: Pencarian tersangka</li>
-    <li>10-67: Info yang dibutuhkan</li>
-    <li>10-68: Kirim info</li>
-    <li>10-69: Pesan diterima</li>
-    <li>10-70: Kebakaran</li>
-    <li>10-71: Minta info kebakaran</li>
-    <li>10-72: Laporan kebakaran</li>
-    <li>10-73: Status kebakaran</li>
-    <li>10-74: Negatif</li>
-    <li>10-75: Kontak dengan ...</li>
-    <li>10-76: Dalam perjalanan</li>
-    <li>10-77: Estimasi waktu tiba</li>
-    <li>10-78: Butuh bantuan</li>
-    <li>10-79: Beritahu koroner</li>
-    <li>10-80: Kejar-kejaran kendaraan</li>
-    <li>10-81: Tes alkohol</li>
-    <li>10-82: Persiapkan tempat tinggal</li>
-    <li>10-83: Pengaturan check point</li>
-    <li>10-84: Estimasi waktu sampai</li>
-    <li>10-85: Penundaan karena ...</li>
-    <li>10-86: Petugas bertugas</li>
-    <li>10-87: Ambil/antar paket</li>
-    <li>10-88: Hubungi nomor telepon ...</li>
-    <li>10-89: Ancaman bom</li>
-    <li>10-90: Perampokan bank</li>
-    <li>10-91: Ambil tahanan</li>
-    <li>10-92: Tahanan tidak sah</li>
-    <li>10-93: Kerusuhan</li>
-    <li>10-94: Drag racing</li>
-    <li>10-95: Tersangka dalam tahanan</li>
-    <li>10-96: Orang gangguan jiwa</li>
-    <li>10-97: Dalam perjalanan ke lokasi</li>
-    <li>10-98: Tugas selesai</li>
-    <li>10-99: Unit butuh bantuan</li>
-    <li>10-100: Perlu istirahat / WC</li>
-  </ul>
-</div>
-
-    <!-- Materi -->
-<div id="materi" class="tab-content">
-  <h2>📚 Materi Pelatihan LVPD Monarch</h2>
-  <p>Materi ini wajib dipelajari oleh seluruh anggota LVPD untuk memastikan standar roleplay kepolisian tetap tinggi dan konsisten.</p>
-
-  <h3>1. Struktur Organisasi Kepolisian</h3>
-  <ul>
-    <li><b>Chief of Police</b> – Pemimpin tertinggi kepolisian.</li>
-    <li><b>Deputy Chief</b> – Wakil Chief, bertugas mengatur operasional.</li>
-    <li><b>Captain</b> – Kepala Divisi.</li>
-    <li><b>Lieutenant</b> – Pengawas unit kecil.</li>
-    <li><b>Sergeant</b> – Supervisor lapangan.</li>
-    <li><b>Corporal</b> – Asisten supervisor.</li>
-    <li><b>Officer</b> – Anggota patroli utama.</li>
-    <li><b>Cadet</b> – Anggota baru dalam masa pelatihan.</li>
-  </ul>
-
-  <h3>2. Tugas Pokok Polisi</h3>
-  <ul>
-    <li>🔹 Menjaga keamanan dan ketertiban masyarakat.</li>
-    <li>🔹 Melaksanakan patroli rutin di wilayah hukum.</li>
-    <li>🔹 Melakukan penindakan terhadap tindak kriminal.</li>
-    <li>🔹 Melakukan penyelidikan dan investigasi awal.</li>
-    <li>🔹 Memberikan pelayanan kepada masyarakat.</li>
-    <li>🔹 Melaksanakan prosedur <i>arrest</i> sesuai aturan roleplay.</li>
-  </ul>
-
-  <h3>3. Prosedur Roleplay Penting</h3>
-  <h4>a. <b>Penangkapan</b></h4>
-  <p>Dalam melakukan penangkapan, petugas wajib memperhatikan tahapan berikut:</p>
-  <ol>
-    <li>Memberikan perintah dengan jelas (contoh: <i>"/me mengeluarkan borgol"</i>).</li>
-    <li>Menanyakan identitas dan melakukan pengecekan lisensi bila perlu.</li>
-    <li>Gunakan borgol hanya bila tersangka mencoba kabur atau melawan.</li>
-    <li>Bawa tersangka ke kantor polisi untuk diproses lebih lanjut.</li>
-  </ol>
-
-  <h4>b. <b>Pemeriksaan Kendaraan</b></h4>
-  <ol>
-    <li>Hentikan kendaraan dengan cara yang sopan dan profesional.</li>
-    <li>Gunakan perintah roleplay sebelum melakukan pemeriksaan (contoh: <i>"/me memeriksa bagasi kendaraan"</i>).</li>
-    <li>Jika ditemukan barang ilegal, ikuti SOP penyitaan barang bukti.</li>
-  </ol>
-
-  <h4>c. <b>Pemeriksaan Senjata</b></h4>
-  <ol>
-    <li>Tanyakan lisensi senjata terlebih dahulu.</li>
-    <li>Jika tidak ada lisensi, lakukan penyitaan sesuai SOP.</li>
-    <li>Apabila tersangka melawan, gunakan <i>tazer</i> sebelum memutuskan menembak.</li>
-  </ol>
-
-  <h3>4. Penggunaan Kekuatan (Use of Force)</h3>
-  <ul>
-    <li>🟢 <b>Level 1</b>: Perintah lisan – Memberikan instruksi dengan tegas.</li>
-    <li>🟡 <b>Level 2</b>: Kendali fisik – Borgol atau dorongan ringan.</li>
-    <li>🟠 <b>Level 3</b>: Non-lethal weapon – Tazer atau baton.</li>
-    <li>🔴 <b>Level 4</b>: Firearm – Senjata api hanya digunakan bila nyawa petugas/masyarakat terancam.</li>
-  </ul>
-
-  <h3>5. Etika Kepolisian</h3>
-  <ul>
-    <li>🚔 Selalu menjaga sikap profesional saat bertugas.</li>
-    <li>🚔 Dilarang melakukan abuse command / powergaming.</li>
-    <li>🚔 Selalu gunakan bahasa yang sopan di IC maupun OOC.</li>
-    <li>🚔 Jangan meninggalkan tugas tanpa izin atasan.</li>
-  </ul>
-
-  <h3>6. Materi Tambahan</h3>
-  <p>Selain materi dasar di atas, anggota LVPD juga akan mendapatkan pembelajaran lanjutan:</p>
-  <ul>
-    <li>📖 Tactical Training (cara menghadapi perampokan & pengepungan).</li>
-    <li>📖 Vehicle Pursuit (prosedur pengejaran kendaraan).</li>
-    <li>📖 Communication Code (Ten-Code & Panel Code).</li>
-    <li>📖 Crime Scene Management (prosedur TKP).</li>
-  </ul>
-
-  <p><i>Materi ini bersifat wajib dipelajari sebelum naik pangkat ke tingkat Officer.</i></p>
-</div>
-
-    <!-- SOP Kendaraan -->
-<div id="sopkendaraan" class="tab-content">
-  <h2>🚓 SOP Kendaraan</h2>
-  <p>SOP ini mengatur penggunaan kendaraan dinas kepolisian agar tetap tertib, rapi, dan sesuai prosedur.</p>
-
-  <ul>
-    <li><b>1.</b> Kendaraan dinas hanya digunakan untuk kepentingan tugas, dilarang untuk keperluan pribadi.</li>
-    <li><b>2.</b> Setiap anggota wajib memiliki SIM in-game yang sah sebelum mengendarai kendaraan dinas.</li>
-    <li><b>3.</b> Kendaraan harus diparkir rapi di garasi markas setelah digunakan.</li>
-    <li><b>4.</b> Tidak diperbolehkan melakukan <i>driving recklessly</i> (ngebut, drifting) tanpa alasan jelas.</li>
-    <li><b>5.</b> Gunakan lampu sirine hanya saat darurat (pengejaran, pengawalan, atau patroli khusus).</li>
-    <li><b>6.</b> Kendaraan yang rusak berat harus segera dilaporkan ke atasan untuk diganti/diperbaiki.</li>
-    <li><b>7.</b> Kendaraan patroli minimal diisi oleh 2 personel (driver dan observer).</li>
-  </ul>
-</div>
-
-    <!-- SOP Deteksi -->
-<div id="sopdeteksi" class="tab-content">
-  <h2>🔍 SOP Deteksi Senjata & Narkotika</h2>
-  <p>SOP ini berlaku ketika petugas mendeteksi adanya barang terlarang yang dibawa oleh masyarakat.</p>
-
-  <ul>
-    <li><b>1.</b> Jika melihat civil membawa senjata atau narkotika, <u>petugas tidak boleh langsung menodong</u>, tetapi harus menegur dengan perintah yang sopan.</li>
-    <li><b>2.</b> Wajib menanyakan lisensi senjata terlebih dahulu.</li>
-    <li><b>3.</b> Jika civil tidak bisa menunjukkan lisensi, lakukan penyitaan sesuai prosedur.</li>
-    <li><b>4.</b> Jika civil kabur menggunakan kendaraan, beri peringatan 1–3 kali sebelum melakukan tindakan tegas.</li>
-    <li><b>5.</b> Gunakan tazer sebagai opsi pertama bila tersangka melawan.</li>
-    <li><b>6.</b> Barang bukti (senjata/narkotika) harus diamankan di kantor polisi.</li>
-  </ul>
-</div>
-
-    <!-- SOP Senjata -->
-<div id="sopsenjata" class="tab-content">
-  <h2>🔫 SOP Senjata</h2>
-  <p>SOP ini mengatur penggunaan senjata api oleh anggota kepolisian agar sesuai dengan aturan roleplay.</p>
-
-  <h3>A. Senjata untuk Patroli Rutin</h3>
-  <ul>
-    <li>Silenced Pistol</li>
-    <li>Desert Eagle (Deagle)</li>
-    <li>Shotgun</li>
-    <li>Nightstick (pentungan)</li>
-    <li>Tazer (jika tersedia)</li>
-  </ul>
-
-  <h3>B. Senjata untuk Event Besar / Situasi Darurat</h3>
-  <ul>
-    <li>SMG / MP5</li>
-    <li>M4</li>
-    <li>Sniper Rifle (hanya unit khusus / SWAT)</li>
-    <li>Grenade / Tear Gas (hanya saat ada izin atasan)</li>
-  </ul>
-
-  <h3>C. Aturan Penggunaan</h3>
-  <ul>
-    <li><b>1.</b> Senjata api hanya boleh digunakan bila nyawa petugas/masyarakat terancam.</li>
-    <li><b>2.</b> Dilarang menggunakan senjata berat (M4, Sniper) saat patroli rutin.</li>
-    <li><b>3.</b> Penggunaan tazer wajib didahulukan sebelum menembak.</li>
-    <li><b>4.</b> Setelah menembak, wajib melaporkan jumlah peluru yang ditembakkan kepada atasan.</li>
-    <li><b>5.</b> Senjata hasil sitaan dari civil harus disimpan di armory, bukan untuk penggunaan pribadi.</li>
-  </ul>
-</div>
-
-
-    <!-- SOP Patroli -->
-<div id="soppatroli" class="tab-content">
-  <h2>🚔 SOP Patroli</h2>
-  <p>Patroli merupakan kegiatan utama kepolisian untuk menjaga ketertiban kota.</p>
-
-  <ul>
-    <li><b>1.</b> Patroli dilakukan minimal oleh 2 anggota. Patroli solo hanya diperbolehkan jika situasi mendesak.</li>
-    <li><b>2.</b> Kendaraan patroli wajib menggunakan kendaraan dinas resmi.</li>
-    <li><b>3.</b> Sebelum patroli, lakukan briefing singkat mengenai rute dan tujuan.</li>
-    <li><b>4.</b> Selalu melaporkan posisi dan situasi ke radio setiap 10–15 menit.</li>
-    <li><b>5.</b> Wajib menggunakan seragam lengkap dan membawa perlengkapan standar (senjata, borgol, radio).</li>
-    <li><b>6.</b> Jika menemukan tindak kriminal, ikuti prosedur deteksi & penangkapan.</li>
-    <li><b>7.</b> Setelah patroli selesai, laporkan hasil patroli ke atasan.</li>
-  </ul>
-</div>
+  <div id="loginArea">
+    <p id="loginText">Silakan login menggunakan Discord untuk melanjutkan.</p>
+    <button id="discordLoginBtn">Login dengan Discord</button>
   </div>
 
-  <footer>
-    &copy; 2025 Kepolisian Las Venturas | Monarch Roleplay
-  </footer>
+  <div id="mainContent" style="display:none;">
+    <div class="tabs">
+      <div class="tab active" data-target="dutyForm">Duty</div>
+      <div class="tab" data-target="cutiForm">Cuti</div>
+      <div class="tab" data-target="loketForm">Loket Pelayanan</div>
+    </div>
 
-  <script>
-    function showTab(tabId) {
-      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    <!-- DUTY -->
+    <form id="dutyForm" class="active">
+      <p style="color:#ffcc00; text-align:center; margin-bottom:10px;">
+         Pastikan nama yang tampil adalah <b>In-Character (IC)</b>!
+      </p>
+      <input type="text" id="officerName" readonly placeholder="Discord Name" />
+      <input type="text" id="officerIC" placeholder="Nama IC" required />
+      <select id="rank" required>
+        <option value="">Pilih Pangkat</option>
+        <option value="Constable 1">CONSTABLE 1</option>
+        <option value="Officer">SENIOR CONSTABLE</option>
+        <option value="Sergeant">LEADING CONSTABLE</option>
+        <option value="Lieutenant">SERGENT</option>
+        <option value="Captain">DETECTIVE SERGEANT</option>
+        <option value="Commander">INSPECTOR</option>
+        <option value="Commander">DETECTIVE INSPECTOR</option>
+        <option value="Commander">CHIEF INSPECTOR</option>
+        <option value="Commander">SUPERINTENDENT</option>
+        <option value="Commander">DETECTIVE SUPERINTENDENT</option>
+        <option value="Commander">CHIEF SUPERINTDENT</option>
+        <option value="Commander">COMANDER</option>
+        <option value="Deputy Commissioner">Deputy Commissioner</option>
+        <option value="Commissioner">Commissioner</option>
+      </select>
+      <textarea id="note" placeholder="LIST DUTY 
+-
+-
+-" rows="5" required></textarea>
+      <label> Upload 3 Foto Duty</label>
+      <input type="file" id="photo1" accept="image/*" required />
+      <input type="file" id="photo2" accept="image/*" required />
+      <input type="file" id="photo3" accept="image/*" required />
+      <div id="photoPreview" class="photo-preview"></div>
+      <button type="submit">Kirim Laporan Duty</button>
+      <p id="statusDuty"></p>
+      <div id="logDuty" class="log-list"></div>
+    </form>
+
+    <!-- CUTI -->
+    <form id="cutiForm">
+      <p style="color:#ffcc00; text-align:center; margin-bottom:10px;">
+        Pastikan nama yang tampil adalah <b>In-Character (IC)</b>!
+      </p>
+      <input type="text" id="officerNameCuti" readonly placeholder="Nama Discord" />
+      <input type="text" id="officerICCuti" placeholder="Masukkan Nama In-Character (IC)" required />
+      <select id="rankCuti" required>
+        <option value="">Pilih Pangkat</option>
+        <option value="Constable 1">CONSTABLE 1</option>
+        <option value="Officer">SENIOR CONSTABLE</option>
+        <option value="Sergeant">LEADING CONSTABLE</option>
+        <option value="Lieutenant">SERGENT</option>
+        <option value="Captain">DETECTIVE SERGEANT</option>
+        <option value="Commander">INSPECTOR</option>
+        <option value="Commander">DETECTIVE INSPECTOR</option>
+        <option value="Commander">CHIEF INSPECTOR</option>
+        <option value="Commander">SUPERINTENDENT</option>
+        <option value="Commander">DETECTIVE SUPERINTENDENT</option>
+        <option value="Commander">CHIEF SUPERINTDENT</option>
+        <option value="Commander">COMANDER</option>
+        <option value="Deputy Commissioner">Deputy Commissioner</option>
+        <option value="Commissioner">Commissioner</option>
+      </select>
+      <input type="text" id="tanggalCuti" placeholder="Tanggal Cuti (contoh: 5-7 Nov 2025)" required />
+      <textarea id="alasanCuti" placeholder="Alasan cuti..." rows="4" required></textarea>
+      <button type="submit">Kirim Laporan Cuti</button>
+      <p id="statusCuti"></p>
+      <div id="logCuti" class="log-list"></div>
+    </form>
+
+    <!-- LOKET PELAYANAN -->
+    <form id="loketForm">
+      <p style="color:#ffcc00; text-align:center; margin-bottom:10px;">
+        Silakan isi form pelayanan!
+      </p>
+      <input type="text" id="loketName" readonly placeholder="Discord Name" />
+      <input type="text" id="loketIC" placeholder="Nama IC" required />
+      <select id="loketJenis" required>
+        <option value="">Pilih Jenis Pelayanan</option>
+        <option value="SIM">SIM</option>
+        <option value="SKCK">SKCK</option>
+        <option value="Surat Keramaian">Surat Keramaian</option>
+        <option value="Plate">Plate</option>
+        <option value="Unimpound">Unimpound</option>
+      </select>
+      <textarea id="loketCatatan" placeholder="Catatan / Permohonan..." rows="4" required></textarea>
+      <button type="submit">Kirim Permohonan</button>
+      <p id="statusLoket"></p>
+      <div id="logLoket" class="log-list"></div>
+    </form>
+  </div>
+</div>
+
+<script>
+// === LOGIN DISCORD ===
+const clientId = "1434896126242455664";
+const redirectUri = "https://police-jaya.vercel.app/";
+const scope = "identify email";
+
+document.getElementById("discordLoginBtn").addEventListener("click", () => {
+  const oauth2Url = `https://discord.com/api/oauth2/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=token&scope=${encodeURIComponent(scope)}`;
+  window.location.href = oauth2Url;
+});
+
+let loggedUser = null;
+
+const hash = window.location.hash;
+if (hash.includes("access_token")) {
+  const params = new URLSearchParams(hash.substring(1));
+  const token = params.get("access_token");
+
+  fetch("https://discord.com/api/users/@me", { headers: { Authorization: `Bearer ${token}` } })
+    .then(res => res.json())
+    .then(user => {
+      loggedUser = user;
+      document.getElementById("loginArea").innerHTML = `
+        <p>Login sebagai <b>${user.username}#${user.discriminator}</b></p>
+        <img src="https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png" width="80" style="border-radius:50%; margin-top:10px;">
+      `;
+      document.getElementById("mainContent").style.display = "block";
+      document.getElementById("officerName").value = user.username;
+      document.getElementById("officerNameCuti").value = user.username;
+      document.getElementById("loketName").value = user.username;
+    });
+}
+
+// === TAB SWITCH ===
+document.querySelectorAll(".tab").forEach(tab => {
+  tab.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    document.querySelectorAll("form").forEach(f => f.classList.remove("active"));
+    tab.classList.add("active");
+    document.getElementById(tab.dataset.target).classList.add("active");
+  });
+});
+
+// === PHOTO PREVIEW ===
+const photoInputs = [
+  document.getElementById("photo1"),
+  document.getElementById("photo2"),
+  document.getElementById("photo3")
+];
+const photoPreview = document.getElementById("photoPreview");
+photoInputs.forEach(i => i.addEventListener("change", updatePreview));
+
+function updatePreview() {
+  photoPreview.innerHTML = "";
+  photoInputs.forEach(input => {
+    const file = input.files[0];
+    if(file){
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        photoPreview.appendChild(img);
+      };
+      reader.readAsDataURL(file);
     }
-  </script>
+  });
+}
+
+// === WEBHOOK & THREAD ===
+const webhookDuty = "https://discord.com/api/webhooks/1434552675084664982/JK_VY1qdupQwzyKzCabN_KxasyFTHM_85EwIEbW_uUcMcBJsEjKWCuW7LeRSNTLkoQ2d";
+const webhookCuti = "https://discord.com/api/webhooks/1434552623356317716/kcdT43fdBkVPxv6sW_oQjtViAfIdYmDIE7gghDaSFz-OBhePfBVGcIhSc_QBdWmU5xLr";
+const webhookLoket = "https://discord.com/api/webhooks/1434898452596396224/meK9SFxqOhiB6PpkYsjMecW7MTPaya-xZ35bySgXaWocgpIEX_OWxApw3xgX2P9T7B2L";
+let threads = {}; // nanti bisa auto-create thread untuk IC baru
+
+// --- Helper: add log ke halaman ---
+function addLog(form, text) {
+  const logDiv = document.getElementById(form);
+  const item = document.createElement("div");
+  item.className = "log-item";
+  item.textContent = `[${new Date().toLocaleTimeString()}] ${text}`;
+  logDiv.prepend(item);
+}
+
+// === FORM DUTY ===
+document.getElementById("dutyForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const status = document.getElementById("statusDuty");
+  const ic = document.getElementById("officerIC").value.trim();
+  if(!/^[A-Za-z0-9_]{3,20}$/.test(ic)){ status.textContent="❌ Format nama IC salah!"; status.className="error"; return; }
+
+  let threadID = threads[ic];
+  if(!threadID){
+    // Auto-create thread (Dummy example, di real harus pake bot backend)
+    threadID = "AUTO_THREAD_ID_" + ic;
+    threads[ic] = threadID;
+    addLog("logDuty", `Thread baru dibuat untuk IC ${ic}`);
+  }
+
+  const rankVal = document.getElementById("rank").value;
+  const noteVal = document.getElementById("note").value;
+  const photos = photoInputs.map(i=>i.files[0]).filter(f=>f);
+  if(photos.length<3){ status.textContent="⚠️ Upload 3 foto duty!"; status.className="error"; return; }
+
+  const content = `Nama Discord: ${loggedUser.username}\nNama IC: ${ic}\nPangkat: ${rankVal}\nAktifitas:\n${noteVal}`;
+  const formData = new FormData();
+  formData.append("content", content);
+  photos.forEach((p,i)=>formData.append(`file${i+1}`,p));
+
+  try{
+    const res = await fetch(`${webhookDuty}?wait=true&thread_id=${threadID}`, { method:"POST", body: formData });
+    if(res.ok){ 
+      status.textContent="✅ Laporan duty berhasil dikirim!";
+      status.className="success";
+      e.target.reset();
+      photoPreview.innerHTML="";
+      addLog("logDuty", `Duty dikirim untuk IC ${ic}`);
+    }else{
+      status.textContent="❌ Gagal kirim laporan duty.";
+      status.className="error";
+      addLog("logDuty", `Gagal kirim duty IC ${ic}`);
+    }
+  }catch(err){ status.textContent="⚠️ Kesalahan jaringan: "+err; status.className="error"; }
+});
+
+// === FORM CUTI ===
+document.getElementById("cutiForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const status = document.getElementById("statusCuti");
+  const ic = document.getElementById("officerICCuti").value.trim();
+  if(!ic){ status.textContent="❌ Isi nama IC!"; status.className="error"; return; }
+
+  let threadID = threads[ic];
+  if(!threadID){
+    threadID = "AUTO_THREAD_ID_" + ic;
+    threads[ic] = threadID;
+    addLog("logCuti", `Thread baru dibuat untuk IC ${ic}`);
+  }
+
+  const rankVal = document.getElementById("rankCuti").value;
+  const tanggalVal = document.getElementById("tanggalCuti").value;
+  const alasanVal = document.getElementById("alasanCuti").value;
+
+  const embed = {
+    title: "Laporan Cuti",
+    color: 16753920,
+    fields:[
+      { name:"Officer Discord", value:loggedUser.username, inline:true },
+      { name:"Officer IC", value:ic, inline:true },
+      { name:"Pangkat", value:rankVal, inline:true },
+      { name:"Tanggal", value:tanggalVal },
+      { name:"Alasan", value:alasanVal }
+    ],
+    footer:{ text: new Date().toLocaleString("id-ID",{timeZone:"Asia/Jakarta"}) }
+  };
+
+  try{
+    const res = await fetch(`${webhookCuti}?wait=true&thread_id=${threadID}`, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ embeds:[embed] })
+    });
+    if(res.ok){ status.textContent="✅ Laporan cuti berhasil dikirim!"; status.className="success"; e.target.reset(); addLog("logCuti", `Cuti dikirim untuk IC ${ic}`); }
+    else { status.textContent="❌ Gagal kirim laporan cuti."; status.className="error"; addLog("logCuti", `Gagal kirim cuti IC ${ic}`); }
+  }catch(err){ status.textContent="⚠️ Kesalahan jaringan: "+err; status.className="error"; }
+});
+
+// === FORM LOKET ===
+document.getElementById("loketForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const status = document.getElementById("statusLoket");
+  const ic = document.getElementById("loketIC").value.trim();
+  const jenis = document.getElementById("loketJenis").value;
+  const catatan = document.getElementById("loketCatatan").value;
+  if(!ic || !jenis){ status.textContent="❌ Lengkapi semua form!"; status.className="error"; return; }
+
+  const embed = {
+    title: "Permohonan Loket Pelayanan",
+    color: 3447003,
+    fields:[
+      { name:"Officer Discord", value:loggedUser.username, inline:true },
+      { name:"Officer IC", value:ic, inline:true },
+      { name:"Jenis Pelayanan", value:jenis },
+      { name:"Catatan", value:catatan }
+    ],
+    footer:{ text: new Date().toLocaleString("id-ID",{timeZone:"Asia/Jakarta"}) }
+  };
+
+  try{
+    const res = await fetch(webhookLoket, {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ embeds:[embed] })
+    });
+    if(res.ok){ status.textContent="✅ Permohonan berhasil dikirim!"; status.className="success"; e.target.reset(); addLog("logLoket", `Permohonan Loket dikirim untuk IC ${ic}`); }
+    else{ status.textContent="❌ Gagal kirim permohonan."; status.className="error"; addLog("logLoket", `Gagal kirim permohonan Loket IC ${ic}`); }
+  }catch(err){ status.textContent="⚠️ Kesalahan jaringan: "+err; status.className="error"; }
+});
+</script>
 </body>
 </html>
