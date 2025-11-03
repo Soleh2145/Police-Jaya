@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | PD Monarch</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-white p-6">
+
+  <h1 class="text-2xl font-bold mb-6">Panel Admin - Duty & Cuti</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- Form Duty -->
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h2 class="text-xl font-bold mb-4 text-yellow-400">Laporan Duty</h2>
+      <form id="dutyForm">
+        <input type="text" id="officer" placeholder="Nama Petugas" class="w-full p-2 rounded mb-2 text-black" required>
+        <input type="text" id="shift" placeholder="Shift (Pagi/Malam)" class="w-full p-2 rounded mb-2 text-black" required>
+        <textarea id="activity" placeholder="Deskripsi kegiatan..." class="w-full p-2 rounded mb-2 text-black" required></textarea>
+        <button type="submit" class="bg-green-600 px-4 py-2 rounded hover:bg-green-700">Kirim Duty</button>
+      </form>
+    </div>
+
+    <!-- Form Cuti -->
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <h2 class="text-xl font-bold mb-4 text-blue-400">Laporan Cuti</h2>
+      <form id="cutiForm">
+        <input type="text" id="cutiNama" placeholder="Nama Petugas" class="w-full p-2 rounded mb-2 text-black" required>
+        <input type="text" id="cutiDurasi" placeholder="Durasi Cuti (contoh: 2 Hari)" class="w-full p-2 rounded mb-2 text-black" required>
+        <textarea id="cutiAlasan" placeholder="Alasan Cuti..." class="w-full p-2 rounded mb-2 text-black" required></textarea>
+        <button type="submit" class="bg-red-600 px-4 py-2 rounded hover:bg-red-700">Kirim Cuti</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+  const adminIDs = ["1316400986301927454"];
+  const user = JSON.parse(localStorage.getItem("discordUser") || "{}");
+
+  if (!adminIDs.includes(user.id)) {
+    alert("Hanya admin yang dapat mengakses halaman ini!");
+    window.location.href = "beranda.html";
+  }
+
+  // Webhook Discord (isi sendiri)
+  const dutyWebhook = "https://discord.com/api/webhooks/xxxx/xxxx";
+  const cutiWebhook = "https://discord.com/api/webhooks/yyyy/yyyy";
+
+  document.getElementById("dutyForm").addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(dutyWebhook, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        content: `📋 **Laporan Duty**\n👮‍♂️ Petugas: ${officer.value}\n🕓 Shift: ${shift.value}\n📄 Aktivitas: ${activity.value}`
+      })
+    });
+    alert("Laporan duty dikirim!");
+    e.target.reset();
+  });
+
+  document.getElementById("cutiForm").addEventListener("submit", e => {
+    e.preventDefault();
+    fetch(cutiWebhook, {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        content: `📝 **Laporan Cuti**\n👮‍♂️ Petugas: ${cutiNama.value}\n📆 Durasi: ${cutiDurasi.value}\n📄 Alasan: ${cutiAlasan.value}`
+      })
+    });
+    alert("Laporan cuti dikirim!");
+    e.target.reset();
+  });
+  </script>
+
+</body>
+</html>

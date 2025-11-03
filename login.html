@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | PD Monarch System</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 flex flex-col justify-center items-center h-screen text-white">
+  <h1 class="text-3xl font-bold mb-6">Login ke Sistem PD Monarch</h1>
+  <button id="discordLogin" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg font-semibold">Login dengan Discord</button>
+
+  <script>
+    const CLIENT_ID = "1234567890123456789"; // ganti dengan CLIENT ID Discord kamu
+    const REDIRECT_URI = window.location.origin + "/beranda.html";
+    const OAUTH_URL = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}&response_type=token&scope=identify`;
+
+    document.getElementById("discordLogin").addEventListener("click", () => {
+      window.location.href = OAUTH_URL;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pembuatan SIM | SYSTEM PD MONARCH</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="logo">SYSTEM PD MONARCH</div>
+  <ul>
+    <li><a href="beranda.html">Beranda</a></li>
+    <li><a href="#" id="logoutBtn">Logout</a></li>
+  </ul>
+</nav>
+
+<main>
+  <h1>Formulir Pembuatan SIM</h1>
+  <p>Lengkapi formulir di bawah ini untuk mengajukan pembuatan SIM.</p>
+
+  <form id="simForm" class="form-box">
+    <input type="text" id="icName" placeholder="Nama In-Character (IC)" required>
+    <input type="text" id="umur" placeholder="Umur IC" required>
+    <input type="text" id="alamat" placeholder="Alamat IC" required>
+    <select id="jenisSim" required>
+      <option value="">Pilih Jenis SIM</option>
+      <option value="SIM A">SIM A</option>
+      <option value="SIM C">SIM C</option>
+      <option value="SIM D">SIM D</option>
+    </select>
+    <textarea id="alasan" placeholder="Alasan mengajukan SIM" rows="4" required></textarea>
+    <button type="submit">Kirim Pengajuan</button>
+    <p id="statusMsg"></p>
+  </form>
+</main>
+
+<script src="script.js"></script>
+<script>
+checkLogin();
+
+const webhook = "https://discord.com/api/webhooks/1434552675084664982/JK_VY1qdupQwzyKzCabN_KxasyFTHM_85EwIEbW_uUcMcBJsEjKWCuW7LeRSNTLkoQ2d";
+
+document.getElementById("simForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const nama = document.getElementById("icName").value;
+  const umur = document.getElementById("umur").value;
+  const alamat = document.getElementById("alamat").value;
+  const jenis = document.getElementById("jenisSim").value;
+  const alasan = document.getElementById("alasan").value;
+  const statusMsg = document.getElementById("statusMsg");
+
+  const user = localStorage.getItem("discord_name");
+  const embed = {
+    title: "Pengajuan Pembuatan SIM",
+    color: 3447003,
+    fields: [
+      { name: "Discord", value: user },
+      { name: "Nama IC", value: nama },
+      { name: "Umur", value: umur },
+      { name: "Alamat", value: alamat },
+      { name: "Jenis SIM", value: jenis },
+      { name: "Alasan", value: alasan }
+    ],
+    footer: { text: "Dikirim otomatis dari PD MONARCH System" }
+  };
+
+  const res = await fetch(webhook, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ embeds: [embed] })
+  });
+
+  if (res.ok) {
+    statusMsg.textContent = "✅ Pengajuan berhasil dikirim!";
+    statusMsg.style.color = "#5af77d";
+    e.target.reset();
+  } else {
+    statusMsg.textContent = "❌ Gagal mengirim pengajuan.";
+    statusMsg.style.color = "#f75a5a";
+  }
+});
+</script>
+</body>
+</html>

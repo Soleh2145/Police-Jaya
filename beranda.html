@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pembuatan SKCK | SYSTEM PD MONARCH</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav>
+  <div class="logo">SYSTEM PD MONARCH</div>
+  <ul>
+    <li><a href="beranda.html">Beranda</a></li>
+    <li><a href="#" id="logoutBtn">Logout</a></li>
+  </ul>
+</nav>
+
+<main>
+  <h1>Formulir Pembuatan SKCK</h1>
+  <p>Silakan isi data berikut dengan benar untuk mengajukan SKCK.</p>
+
+  <form id="skckForm" class="form-box">
+    <input type="text" id="icName" placeholder="Nama In-Character (IC)" required>
+    <input type="text" id="umur" placeholder="Umur IC" required>
+    <input type="text" id="alamat" placeholder="Alamat IC" required>
+    <textarea id="tujuan" placeholder="Tujuan pembuatan SKCK" rows="4" required></textarea>
+    <button type="submit">Kirim Pengajuan</button>
+    <p id="statusMsg"></p>
+  </form>
+</main>
+
+<script src="script.js"></script>
+<script>
+checkLogin();
+
+const webhook = "https://discord.com/api/webhooks/1434552623356317716/kcdT43fdBkVPxv6sW_oQjtViAfIdYmDIE7gghDaSFz-OBhePfBVGcIhSc_QBdWmU5xLr";
+
+document.getElementById("skckForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const nama = document.getElementById("icName").value;
+  const umur = document.getElementById("umur").value;
+  const alamat = document.getElementById("alamat").value;
+  const tujuan = document.getElementById("tujuan").value;
+  const statusMsg = document.getElementById("statusMsg");
+
+  const user = localStorage.getItem("discord_name");
+  const embed = {
+    title: "Pengajuan Pembuatan SKCK",
+    color: 15158332,
+    fields: [
+      { name: "Discord", value: user },
+      { name: "Nama IC", value: nama },
+      { name: "Umur", value: umur },
+      { name: "Alamat", value: alamat },
+      { name: "Tujuan", value: tujuan }
+    ],
+    footer: { text: "Dikirim otomatis dari PD MONARCH System" }
+  };
+
+  const res = await fetch(webhook, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ embeds: [embed] })
+  });
+
+  if (res.ok) {
+    statusMsg.textContent = "✅ Pengajuan berhasil dikirim!";
+    statusMsg.style.color = "#5af77d";
+    e.target.reset();
+  } else {
+    statusMsg.textContent = "❌ Gagal mengirim pengajuan.";
+    statusMsg.style.color = "#f75a5a";
+  }
+});
+</script>
+</body>
+</html>
