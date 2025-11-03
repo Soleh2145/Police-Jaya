@@ -26,19 +26,23 @@ if (hash.includes("access_token")) {
     });
 }
 
-// ==== CEK LOGIN DI SETIAP HALAMAN ====
+// ==== CEK LOGIN ====
 function protectPage() {
   const user = JSON.parse(localStorage.getItem("discordUser") || "{}");
   if (!user.id) {
     window.location.href = "index.html";
-  } else {
-    const avatar = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
-    document.getElementById("discordUser").style.display = "flex";
-    document.getElementById("avatar").src = avatar;
-    document.getElementById("username").textContent = user.username;
+    return;
   }
+
+  const avatar = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+  const username = user.username;
+
+  document.getElementById("discordUser").style.display = "flex";
+  document.getElementById("avatar").src = avatar;
+  document.getElementById("username").textContent = username;
 }
 
+// ==== LOGOUT ====
 function logout() {
   localStorage.removeItem("discordUser");
   window.location.href = "index.html";
