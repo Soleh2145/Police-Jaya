@@ -1,77 +1,124 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pembuatan SKCK | SYSTEM PD MONARCH</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulir SKCK | PD Monarch</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #0f172a;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+    }
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    }
+    .input-field {
+      width: 100%;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      border-radius: 8px;
+      padding: 10px;
+      color: white;
+      outline: none;
+    }
+    .input-field::placeholder {
+      color: #cbd5e1;
+    }
+    .submit-btn {
+      background-color: #3b82f6;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .submit-btn:hover {
+      background-color: #2563eb;
+    }
+  </style>
 </head>
 <body>
-<nav>
-  <div class="logo">SYSTEM PD MONARCH</div>
-  <ul>
-    <li><a href="beranda.html">Beranda</a></li>
-    <li><a href="#" id="logoutBtn">Logout</a></li>
-  </ul>
-</nav>
 
-<main>
-  <h1>Formulir Pembuatan SKCK</h1>
-  <p>Silakan isi data berikut dengan benar untuk mengajukan SKCK.</p>
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white p-4 flex justify-between items-center">
+    <h1 class="text-lg font-bold">SYSTEM PD MONARCH</h1>
+    <div class="space-x-4">
+      <a href="beranda.html" class="bg-blue-800 px-3 py-1 rounded hover:bg-blue-700">Beranda</a>
+      <button id="logoutBtn" class="bg-red-600 px-3 py-1 rounded hover:bg-red-700">Logout</button>
+    </div>
+  </nav>
 
-  <form id="skckForm" class="form-box">
-    <input type="text" id="icName" placeholder="Nama In-Character (IC)" required>
-    <input type="text" id="umur" placeholder="Umur IC" required>
-    <input type="text" id="alamat" placeholder="Alamat IC" required>
-    <textarea id="tujuan" placeholder="Tujuan pembuatan SKCK" rows="4" required></textarea>
-    <button type="submit">Kirim Pengajuan</button>
-    <p id="statusMsg"></p>
-  </form>
-</main>
+  <!-- Form -->
+  <div class="flex justify-center items-center min-h-screen">
+    <div class="card max-w-md w-full">
+      <h2 class="text-2xl font-bold text-center mb-2">Formulir Pembuatan SKCK</h2>
+      <p class="text-center text-gray-300 mb-6">Silakan isi data berikut dengan benar untuk mengajukan SKCK.</p>
 
-<script src="script.js"></script>
-<script>
-checkLogin();
+      <form id="skckForm" class="space-y-4">
+        <input type="text" id="namaIC" class="input-field" placeholder="Nama In-Character (IC)" required>
+        <input type="number" id="umurIC" class="input-field" placeholder="Umur IC" required>
+        <input type="text" id="alamatIC" class="input-field" placeholder="Alamat IC" required>
+        <textarea id="tujuan" class="input-field" rows="3" placeholder="Tujuan pembuatan SKCK" required></textarea>
 
-const webhook = "https://discord.com/api/webhooks/1434552623356317716/kcdT43fdBkVPxv6sW_oQjtViAfIdYmDIE7gghDaSFz-OBhePfBVGcIhSc_QBdWmU5xLr";
+        <button type="submit" class="submit-btn w-full">Kirim Pengajuan</button>
+      </form>
+    </div>
+  </div>
 
-document.getElementById("skckForm").addEventListener("submit", async e => {
-  e.preventDefault();
-  const nama = document.getElementById("icName").value;
-  const umur = document.getElementById("umur").value;
-  const alamat = document.getElementById("alamat").value;
-  const tujuan = document.getElementById("tujuan").value;
-  const statusMsg = document.getElementById("statusMsg");
+  <script>
+    // Cek login Discord
+    const user = JSON.parse(localStorage.getItem("discordUser") || "{}");
+    if (!user.id) window.location.href = "login.html";
 
-  const user = localStorage.getItem("discord_name");
-  const embed = {
-    title: "Pengajuan Pembuatan SKCK",
-    color: 15158332,
-    fields: [
-      { name: "Discord", value: user },
-      { name: "Nama IC", value: nama },
-      { name: "Umur", value: umur },
-      { name: "Alamat", value: alamat },
-      { name: "Tujuan", value: tujuan }
-    ],
-    footer: { text: "Dikirim otomatis dari PD MONARCH System" }
-  };
+    // Logout
+    document.getElementById("logoutBtn").addEventListener("click", () => {
+      localStorage.removeItem("discordUser");
+      window.location.href = "login.html";
+    });
 
-  const res = await fetch(webhook, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ embeds: [embed] })
-  });
+    // Webhook Discord
+    const webhookURL = "https://discord.com/api/webhooks/XXXXXX/XXXXXXXXXXXXXXXXXXXXXXXX"; // ganti dgn punyamu
 
-  if (res.ok) {
-    statusMsg.textContent = "✅ Pengajuan berhasil dikirim!";
-    statusMsg.style.color = "#5af77d";
-    e.target.reset();
-  } else {
-    statusMsg.textContent = "❌ Gagal mengirim pengajuan.";
-    statusMsg.style.color = "#f75a5a";
-  }
-});
-</script>
+    document.getElementById("skckForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = {
+        nama: document.getElementById("namaIC").value,
+        umur: document.getElementById("umurIC").value,
+        alamat: document.getElementById("alamatIC").value,
+        tujuan: document.getElementById("tujuan").value,
+        discordUser: user.username || "Tidak diketahui",
+      };
+
+      const payload = {
+        embeds: [{
+          title: "📄 Pengajuan SKCK Baru",
+          color: 3447003,
+          fields: [
+            { name: "Nama IC", value: data.nama, inline: true },
+            { name: "Umur IC", value: data.umur, inline: true },
+            { name: "Alamat IC", value: data.alamat, inline: false },
+            { name: "Tujuan", value: data.tujuan, inline: false },
+            { name: "Pengaju Discord", value: data.discordUser, inline: false },
+          ],
+          footer: { text: "System PD Monarch" },
+        }]
+      };
+
+      await fetch(webhookURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+
+      alert("✅ Pengajuan SKCK berhasil dikirim!");
+      document.getElementById("skckForm").reset();
+    });
+  </script>
 </body>
 </html>
