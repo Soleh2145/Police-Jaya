@@ -3,74 +3,81 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Beranda - PD MONARCH SYSTEM</title>
+  <title>Layanan Kepolisian Kotaku</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://kit.fontawesome.com/a2d9a6a64b.js" crossorigin="anonymous"></script>
+  <script defer src="auth.js"></script>
 </head>
 <body onload="protectPage()">
+  <!-- Navbar -->
   <nav class="navbar">
-    <div class="logo">PD MONARCH SYSTEM</div>
-    <div class="nav-links">
-      <a href="beranda.html" class="active">Beranda</a>
+    <div class="nav-left">
+      <img src="logo.png" class="logo" alt="Logo" />
+      <span class="nav-title">Layanan Kepolisian Kotaku</span>
+    </div>
+    <div class="nav-right">
+      <a href="beranda.html">Beranda</a>
       <a href="kontak.html">Kontak</a>
-      <div id="discordUser" class="user-info" style="display:none;">
-        <img id="avatar" class="avatar" src="" alt="Discord Avatar" />
+      <div id="discordUser" class="discord-info" style="display: none;">
+        <img id="avatar" src="" alt="Avatar" />
         <span id="username"></span>
       </div>
-      <button class="logout-btn" onclick="logout()">Logout</button>
+      <button onclick="logout()" class="logout-btn">Logout</button>
     </div>
   </nav>
 
-  <section class="content">
-    <div class="card-container">
-      <h1>Selamat Datang di Sistem Pelayanan PD MONARCH</h1>
-      <p>Pilih layanan di bawah ini untuk mengajukan permohonan resmi:</p>
-      
-      <div class="service-grid">
-        <div class="service-card" onclick="window.location='sim.html'">
-          <i class="fa-solid fa-id-card"></i>
-          <h3>Pembuatan SIM</h3>
-          <p>Layanan pembuatan dan perpanjangan SIM.</p>
-        </div>
-        <div class="service-card" onclick="window.location='skck.html'">
-          <i class="fa-solid fa-file-signature"></i>
-          <h3>Pembuatan SKCK</h3>
-          <p>Layanan pengajuan surat SKCK resmi.</p>
-        </div>
-        <div class="service-card" onclick="window.location='regulasi.html'">
-          <i class="fa-solid fa-scale-balanced"></i>
-          <h3>Regulasi</h3>
-          <p>Peraturan dan kebijakan PD Monarch.</p>
-        </div>
-        <div class="service-card" onclick="window.location='pendaftaran.html'">
-          <i class="fa-solid fa-info-circle"></i>
-          <h3>Informasi Pendaftaran</h3>
-          <p>Detail tata cara dan dokumen yang dibutuhkan.</p>
-        </div>
+  <!-- Main Content -->
+  <main class="container">
+    <h1>Selamat Datang Di Layanan Kepolisian Kotaku</h1>
+    <p>
+      Sistem layanan online kami saat ini masih dalam tahap pengembangan dan uji coba.
+      Kami sangat menghargai setiap saran dan kritik yang dapat memperbaiki kualitas layanan ini.
+      Silakan sampaikan masukan Anda melalui saluran resmi Discord Kepolisian Kotaku.
+    </p>
+
+    <section class="status-section">
+      <h2>Status Pelayanan & Navigasi</h2>
+      <div class="status-grid">
+        <div><strong>SIM:</strong> <span class="status open">Dibuka</span></div>
+        <div><strong>Perpanjang SIM:</strong> <span class="status open">Dibuka</span></div>
+        <div><strong>Pembuatan SKCK:</strong> <span class="status open">Dibuka</span></div>
+        <div><strong>Pengambilan Impound:</strong> <span class="status open">Dibuka</span></div>
+        <div><strong>Pendaftaran Kepolisian:</strong> <span class="status open">Dibuka</span></div>
       </div>
 
-      <h2>📅 Jadwal Operasional</h2>
-      <div class="schedule">
-        <div class="day">
-          <h4>Senin</h4>
-          <p>SKCK & Izin Berburu — 15.30–17.00 / 19.00–20.30 @MAPOLDA</p>
-        </div>
-        <div class="day">
-          <h4>Selasa</h4>
-          <p>SKCK & Izin Berburu — 15.30–17.00 / 19.00–20.30 @MAPOLDA</p>
-        </div>
-        <div class="day">
-          <h4>Jumat</h4>
-          <p>SIM, Plate, Impound — 15.30–17.00 / 19.30–21.00 @HIGHWAY PATROL</p>
-        </div>
-        <div class="day">
-          <h4>Sabtu</h4>
-          <p>SIM, Plate, Impound — 15.30–17.00 / 19.30–21.00 @HIGHWAY PATROL</p>
-        </div>
+      <div class="nav-grid">
+        <button class="nav-btn">Pembuatan SIM</button>
+        <button class="nav-btn">Perpanjang SIM</button>
+        <button class="nav-btn">Pembuatan SKCK</button>
+        <button class="nav-btn">Pengambilan Impound</button>
+        <button class="nav-btn">Informasi Pendaftaran</button>
+        <button class="nav-btn">Regulasi</button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <script src="script.js"></script>
+    <section class="jadwal-section">
+      <h2>🗓️ Jadwal Operasional 🗓️</h2>
+      <div class="jadwal-grid">
+        <div class="jadwal-card">
+          <h3>Senin</h3>
+          <p><strong>Pelayanan SKCK & Surat Izin Berburu</strong></p>
+          <p>Shift Sore : 15.30 - 17.00 WIB<br>Shift Malam : 19.00 - 20.30 WIB<br>Lokasi : MAPOLDA / LSPD</p>
+          <p><strong>Pelayanan SIM, Plate & Impound</strong></p>
+          <p>Shift Sore : 15.30 - 17.00 WIB<br>Shift Malam : 19.30 - 21.00 WIB<br>Lokasi : HIGHWAY PATROL</p>
+        </div>
+        <div class="jadwal-card">
+          <h3>Selasa</h3>
+          <p><strong>Pelayanan SKCK & Surat Izin Berburu</strong></p>
+          <p>Shift Sore : 15.30 - 17.00 WIB<br>Shift Malam : 19.00 - 20.30 WIB<br>Lokasi : MAPOLDA / LSPD</p>
+          <p><strong>Pelayanan SIM, Plate & Impound</strong></p>
+          <p>Shift Sore : 15.30 - 17.00 WIB<br>Shift Malam : 19.30 - 21.00 WIB<br>Lokasi : HIGHWAY PATROL</p>
+        </div>
+        <!-- Tambah Rabu–Sabtu seperti di atas -->
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © Kepolisian Kotaku 2025 | Protect and Serve
+  </footer>
 </body>
 </html>
